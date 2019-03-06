@@ -1,5 +1,6 @@
 import React from 'react';
 import {Form,Button,Col,Jumbotron} from 'react-bootstrap';
+import {Link } from 'react-router-dom'
 import "./Login.css";
 
 
@@ -30,7 +31,7 @@ class Login extends React.Component{
 
     render(){
         return(
-          <div className="Login">
+          <div className="Login" >
             <Form onSubmit={this.handleSubmit}>
           
                 <Form.Group controlId="email">
@@ -47,7 +48,7 @@ class Login extends React.Component{
                 <Form.Group controlId="password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
-                        autoFocus
+                        
                        
                         onChange={this.handleChange}
                         type="password" 
@@ -67,13 +68,17 @@ class Login extends React.Component{
                 </Button>
                 </Form.Group>
                 <Form.Group controlId="formBasicChecbox">
-                <Button
+                <Link to="/register">  <Button
                     block
-                    disabled={!this.validateForm()} 
+                   
                     variant="primary"
-                    type="submit">
-                    Login
-                </Button>
+                    type="submit"
+                    Component={Link}
+                    to="/register"
+                    >
+                   Register
+                   
+                </Button></Link>
                 </Form.Group>
                 
                 

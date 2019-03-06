@@ -53,7 +53,7 @@ class Register extends React.Component{
                 <Form.Label>First Name</Form.Label>
                 <Form.Control 
                     required
-                    autoFocus
+                    
                     onChange={this.handleChange} 
                    
                     type="text" 
@@ -63,7 +63,7 @@ class Register extends React.Component{
             <Form.Group controlId="adjustorlastname">
                 <Form.Label>Last Name</Form.Label>
                 <Form.Control 
-                    autoFocus
+                    
                     required
                     onChange={this.handleChange}
                    
@@ -74,7 +74,7 @@ class Register extends React.Component{
             <Form.Group controlId="adjustoremail">
                 <Form.Label>Email</Form.Label>
                 <Form.Control 
-                    autoFocus
+                    
                     required
                     onChange={this.handleChange}
                    
@@ -85,7 +85,7 @@ class Register extends React.Component{
             <Form.Group controlId="adjustorphone">
                 <Form.Label>Phone No</Form.Label>
                 <Form.Control 
-                    autoFocus
+                    
                     required
                     onChange={this.handleChange}
                    
@@ -96,7 +96,7 @@ class Register extends React.Component{
             <Form.Group controlId="company_id">
                 <Form.Label>Company ID</Form.Label>
                 <Form.Control 
-                    autoFocus
+                    
                     required
                     onChange={this.handleChange}
                    
@@ -107,7 +107,7 @@ class Register extends React.Component{
             <Form.Group controlId="adjustor_username">
                 <Form.Label>UserName</Form.Label>
                 <Form.Control 
-                    autoFocus
+                    
                     required
                     onChange={this.handleChange}
                   
@@ -118,7 +118,7 @@ class Register extends React.Component{
             <Form.Group controlId="adjustor_password">
                 <Form.Label>Password</Form.Label>
                 <Form.Control 
-                    autoFocus
+                    
                     required
                     onChange={this.handleChange}
                   
@@ -155,7 +155,7 @@ class Register extends React.Component{
                
                 variant="primary"
                 type="submit">
-                Register
+                Create Account
             </Button>
            
            

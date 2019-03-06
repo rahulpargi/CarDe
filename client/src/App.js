@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
-import {
-  Container
-} from 'react-bootstrap';
-import Header from './components/Header'
+
+import {Route,Switch} from 'react-router-dom';
+import Login from './components/Login'
+import Profile from './components/Profile';
+import CreateClaim from './components/CreateClaim';
+import Dashboard from './components/Dashboard'
 import Register from './components/Register'
 
 class App extends Component {
  
-  componentDidMount(){
-    fetch('/api')
-    .then(response => response.json())
-    .then(data => this.setState({name:data.a}));
-  }
+  
   render() {
     return (
     
       
       <div className="App">
+      <Switch>
      
-      <Header/>
-     
+        <Route exact path="/" component={Login}/>
+        <Route path="/register" component={Register}/>
+        
+        <Route path="/profile" component={Profile}/>
+        <Route path="/create" component={CreateClaim}/>
+        <Route path="/view" component={Dashboard}/>
+      </Switch>
       </div>
       
       
