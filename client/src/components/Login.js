@@ -59,13 +59,13 @@ class Login extends React.Component{
                     <Form.Check type="checkbox" label="Remember Me" />
                 </Form.Group>
                 <Form.Group controlId="formBasicChecbox">
-                <Button
+               <Link to='/profile'> <Button
                     block
                     disabled={!this.validateForm()} 
                     variant="primary"
                     type="submit">
                     Login
-                </Button>
+                </Button></Link>
                 </Form.Group>
                 <Form.Group controlId="formBasicChecbox">
                 <Link to="/register">  <Button
