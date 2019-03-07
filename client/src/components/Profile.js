@@ -92,11 +92,11 @@ class Profile extends Component{
                             variant="primary"
                             size="sm"
                         >Next</Button>
-                        <Button
+                        <Link to='/create'><Button
                             block
                             variant="primary"
                             size="sm"
-                        > New Claim</Button>
+                        > New Claim</Button></Link>
                        
                     </Col>
                     
