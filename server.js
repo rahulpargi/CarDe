@@ -3,7 +3,8 @@ const app = express();
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
-const data = require('./routes/data')
+const data = require('./routes/data');
+const config = require('./db');
 
 
 //Middlewares
