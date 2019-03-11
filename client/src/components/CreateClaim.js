@@ -2,15 +2,25 @@ import React,{Component} from 'react';
 import Layout from './Layout';
 import {Row,Col,Container,InputGroup,FormControl,Button} from 'react-bootstrap';
 import ClaimTable from './ClaimTable'
+import axios from 'axios';
 
 
 
 class CreateClaim extends Component{
-
+    state={
+        message:'Loading'
+    }
+    componentDidMount(){
+        fetch('/api/create')
+        .then(res => res.text())
+        .then(res => this.setState({message: res}));
+    }
     render(){
         return(
+            
             <Layout>
                 <Container fluid>
+                
                     <Row>
                         <Col  className="shadow-lg p-3 mb-5 bg-white rounded">
                             <InputGroup size="sm" className="mb-3">

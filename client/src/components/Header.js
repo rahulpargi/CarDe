@@ -16,7 +16,7 @@ const Header=()=>{
                 <Navbar.Collapse className="justify-content-end">
                 <Nav>
                     <Nav.Link href="#deets">Profile</Nav.Link>
-                    <Nav.Link eventKey={2} href="#memes">
+                    <Nav.Link eventKey={2} href="#memes" onClick={()=>{alert('dwdw')}}>
                         Signout
                     </Nav.Link>
                 </Nav>

@@ -6,19 +6,17 @@
   "scripts": {
     "client": "cd client && npm start",
     "server": "nodemon ./bin/www",
-<<<<<<< HEAD
     "start": "concurrently \"npm run client\" \"npm run server\" ",
     "build": "cd client && react-scripts build"
-=======
-    "start": "concurrently \"npm run client\" \"npm run server\" "
->>>>>>> parent of 0ba0d4b... Need to add authentication and connection to database
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.18.0",
+    "bcrypt": "^3.0.4",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.18.3",
+    "cookie-parser": "^1.4.4",
     "express": "^4.16.4",
     "gravatar": "^1.8.0",
     "jsonwebtoken": "^8.5.0",

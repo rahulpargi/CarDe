@@ -5,7 +5,9 @@ import Login from './components/Login'
 import Profile from './components/Profile';
 import CreateClaim from './components/CreateClaim';
 import Dashboard from './components/Dashboard'
-import Register from './components/Register'
+import Register from './components/Register';
+import Auth from './components/Auth';
+import Error404 from './components/Error404'
 
 class App extends Component {
  
@@ -18,11 +20,16 @@ class App extends Component {
       <Switch>
      
         <Route exact path="/" component={Login}/>
-        <Route path="/register" component={Register}/>
-        
-        <Route path="/profile" component={Profile}/>
-        <Route path="/create" component={CreateClaim}/>
-        <Route path="/view" component={Dashboard}/>
+        <Route exact path="/register" component={Register}/>
+        <Route exact path="/profile" component={Auth(Profile)}/>
+       
+        <Route exact  path="/create" component={Auth(CreateClaim)}/>
+    
+        <Route  exact path="/view" component={Auth(Dashboard)}/>
+       
+       
+ 
+        <Route   component={Error404}/>
       </Switch>
       </div>
       

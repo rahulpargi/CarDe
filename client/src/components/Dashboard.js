@@ -3,15 +3,26 @@ import {Row,Col,Container,InputGroup,FormControl} from 'react-bootstrap';
 import Layout from './Layout'
 import ViewTable from './ViewTable';
 import DetailTable from './DetailTable';
-import Chart from './Chart'
+import Chart from './Chart';
+import axios from 'axios'
 
 
 
 class Dashboard extends Component{
+    state={
+        message:'Loading'
+    }
+    componentDidMount(){
+        fetch('/api/view')
+        .then(res => res.text())
+        .then(res => this.setState({message: res}));
+    }
     render(){
+       
         return(
            <Layout>
                <Container fluid>
+               
                 <Row>
                     <Col className="shadow-lg p-3 mb-5 bg-white rounded">
                         <Chart/>
