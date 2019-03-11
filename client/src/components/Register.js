@@ -17,7 +17,9 @@ class Register extends React.Component{
 
         
     }
-   
+    // validateForm(){
+    //     return this.state.claim_adjustor_id.length>0 && this.state.password.length>0;
+    // }
 
     handleChange=event=>{
         this.setState({

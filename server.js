@@ -11,7 +11,7 @@ const config = require('./db');
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':'false'}));
-app.use(express.static(path.join(__dirname, './client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 
 app.use('/api/data',data)

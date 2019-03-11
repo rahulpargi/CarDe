@@ -1,6 +1,5 @@
 import React,{Component} from 'react';
-import {Navbar,Nav} from 'react-bootstrap';
-import {Link } from 'react-router-dom'
+import {Navbar,Nav} from 'react-bootstrap'
 
 
 
@@ -16,8 +15,8 @@ const Header=()=>{
                
                 <Navbar.Collapse className="justify-content-end">
                 <Nav>
-                    <Nav.Link href="/profile">Profile</Nav.Link>
-                    <Nav.Link eventKey={2} href="/">
+                    <Nav.Link href="#deets">Profile</Nav.Link>
+                    <Nav.Link eventKey={2} href="#memes">
                         Signout
                     </Nav.Link>
                 </Nav>
