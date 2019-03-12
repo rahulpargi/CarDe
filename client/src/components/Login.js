@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form,Button,Col,Jumbotron} from 'react-bootstrap';
+import {Form,Button} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import axios from 'axios'
 import "./Login.css";
