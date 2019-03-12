@@ -4,19 +4,28 @@ import DataTable from './Table';
 import {Route,Link} from 'react-router-dom';
 
 import Layout from './Layout'
+import axios from 'axios';
 
 
 
 
 
 class Profile extends Component{
+    state={
+        message:'Loading'
+    }
+    componentDidMount(){
+        axios.get('/api/profile')
+        
+        .then(res => this.setState({message: res.data}));
+    }
     render(){
         return(
             <Layout>
             <div>
             <Container fluid>
               
-          
+            
                
               <Row>
                     <Col>

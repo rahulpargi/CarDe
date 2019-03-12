@@ -1,25 +1,24 @@
 import React from 'react';
-import {Form,Button} from 'react-bootstrap';
+import {Form,Button,Alert} from 'react-bootstrap';
 import "./Login.css";
+import axios from 'axios';
 
 
 class Register extends React.Component{
     state={
-        "claim_adjustor_id": "",
-        "adjustorfirstname": "",
-        "adjustorlastname": "",
-        "adjustoremail": "",
-        "adjustorphone": "",
-        "admin": "",
-        "company_id": "",
-        "adjustor_username": "",
-        "adjustor_password": "",
+        claim_adjustor_id: "",
+        adjustorfirstname: "",
+        adjustorlastname: "",
+        adjustoremail: "",
+        adjustorphone: "",
+        admin: false,
+        company_id: "",
+        adjustor_username: "",
+        adjustor_password: "",
 
         
     }
-    // validateForm(){
-    //     return this.state.claim_adjustor_id.length>0 && this.state.password.length>0;
-    // }
+   
 
     handleChange=event=>{
         this.setState({
@@ -29,6 +28,28 @@ class Register extends React.Component{
 
     handleSubmit=event=>{
         event.preventDefault();
+        const data = this.state;
+        let input=( 
+            <Alert variant={"primary"}>
+                Successfully Registered
+            </Alert>
+          );
+        
+        
+        //Posting data
+        axios.post('/api/register',data)
+        .then(res=>{
+           if(res.status === 200){
+               this.props.history.push('/');
+           }else{
+               const error = new Error(res.error);
+               throw error
+           }
+        })
+        .catch(error=>{
+            console.log('error');
+        });
+        
         
     }
     render(){
@@ -129,18 +150,18 @@ class Register extends React.Component{
             <Form.Group>
            
             <Form.Label>Admin ?</Form.Label>
+            
+           
             <Form.Check
-                type="radio"
+                type="checkbox"
                 label="Yes"
-                name="admin_yes"
-                id="admin_yes"
+                name="yes"
+                id="yes"
+                value={this.state.admin}
+                onChange={()=>this.setState({admin:!this.state.admin})}
+                
             />
-            <Form.Check
-                type="radio"
-                label="No"
-                name="admin_no"
-                id="admin_no"
-            />
+            
             
             </Form.Group>
             </fieldset>
@@ -164,7 +185,7 @@ class Register extends React.Component{
            
            
         </Form>
-        {JSON.stringify(this.state)}
+    
         </div>
         
         );

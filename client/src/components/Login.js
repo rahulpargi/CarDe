@@ -1,6 +1,7 @@
 import React from 'react';
 import {Form,Button,Col,Jumbotron} from 'react-bootstrap';
-import {Link } from 'react-router-dom'
+import {Link } from 'react-router-dom';
+import axios from 'axios'
 import "./Login.css";
 
 
@@ -10,13 +11,13 @@ class Login extends React.Component{
         super(props);
     
         this.state = {
-          email: "",
-          password: ""
+            adjustoremail: '',
+            adjustor_password: ''
         };
     }
 
     validateForm(){
-        return this.state.email.length>0 && this.state.password.length>0;
+        return this.state.adjustoremail.length>0 && this.state.adjustor_password.length>0;
     }
 
     handleChange=event=>{
@@ -27,14 +28,27 @@ class Login extends React.Component{
 
     handleSubmit=event=>{
         event.preventDefault();
+        const data=this.state;
+        axios.post('/api/authenticate',data)
+        .then(res=>{
+           if(res.status === 200){
+               this.props.history.push('/profile');
+           }else{
+               const error = new Error(res.error);
+               throw error
+           }
+        })
+        .catch(error=>{
+            console.log('error');
+        });
     }
 
     render(){
         return(
           <div className="Login" >
             <Form onSubmit={this.handleSubmit}>
-          
-                <Form.Group controlId="email">
+         
+                <Form.Group controlId="adjustoremail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control 
                         autoFocus
@@ -45,7 +59,7 @@ class Login extends React.Component{
                    
                 </Form.Group>
             
-                <Form.Group controlId="password">
+                <Form.Group controlId="adjustor_password">
                     <Form.Label>Password</Form.Label>
                     <Form.Control 
                         
@@ -59,13 +73,13 @@ class Login extends React.Component{
                     <Form.Check type="checkbox" label="Remember Me" />
                 </Form.Group>
                 <Form.Group controlId="formBasicChecbox">
-               <Link to='/profile'> <Button
+                <Button
                     block
                     disabled={!this.validateForm()} 
                     variant="primary"
                     type="submit">
                     Login
-                </Button></Link>
+                </Button>
                 </Form.Group>
                 <Form.Group controlId="formBasicChecbox">
                 <Link to="/register">  <Button
