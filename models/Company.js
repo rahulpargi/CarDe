@@ -1,12 +1,10 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-
-const saltRounds = 10;
-const secret = 'secret';
 
 
 
-const UserSchema = new mongoose.Schema({
+
+
+const CompanySchema = new mongoose.Schema({
     claim_adjustor_id:{
         type:String,
         required:true,
@@ -80,15 +78,5 @@ UserSchema.pre('save',function(next){
     }
 });
 
-UserSchema.methods.isCorrectPassword = function(adjustor_password, callback){
-  
-    bcrypt.compare(adjustor_password, this.adjustor_password, function(err, same) {
-      if (err) {
-        callback(err);
-      } else {
-        callback(err, same);
-      }
-    });
-  }
 
-module.exports = mongoose.model('User',UserSchema);
+module.exports = mongoose.model('Company',CompanySchema);

@@ -15,6 +15,8 @@ class Register extends React.Component{
         company_id: "",
         adjustor_username: "",
         adjustor_password: "",
+        showAlert:false,
+        alertMessage:""
 
         
     }
@@ -29,11 +31,6 @@ class Register extends React.Component{
     handleSubmit=event=>{
         event.preventDefault();
         const data = this.state;
-        let input=( 
-            <Alert variant={"primary"}>
-                Successfully Registered
-            </Alert>
-          );
         
         
         //Posting data
@@ -47,16 +44,25 @@ class Register extends React.Component{
            }
         })
         .catch(error=>{
-            console.log('error');
+            console.log(error.response.data);
+            this.setState({alertMessage:error.response.data});
+            this.setState({showAlert:!this.state.showAlert})
         });
         
         
     }
     render(){
+        let alert=( 
+            <Alert dismissible variant={"danger"}>
+                {this.state.alertMessage}
+            </Alert>
+          );
+        
         return(
-            <div className="Login">
-             
+            <div className="login-form">
+            
             <Form onSubmit={this.handleSubmit}>
+            {this.state.showAlert && alert}
             <h2 >Register</h2>
             <Form.Group controlId="claim_adjustor_id" >
                 <Form.Label>Adjustor ID</Form.Label>
