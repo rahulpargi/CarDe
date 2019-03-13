@@ -9,7 +9,7 @@ const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware')
 
 const mongoose = require('mongoose');
-const mongo_uri = 'mongodb://localhost:27017/cardeeb';
+const mongo_uri = 'mongodb://localhost:C2y6yDjf5%2FR%2Bob0N8A7Cgv30VRDJIWEHLM%2B4QDU5DE2nQ9nDuVTqobD4b8mGGyPMbIZnqyMsEcaGQy67XIw%2FJw%3D%3D@localhost:10255/admin?ssl=true';
 const secret = 'secret';
 
 
@@ -83,7 +83,7 @@ app.post('/api/authenticate',function(req,res){
                     console.log('inside---------------------------ss')
                     const payload = {adjustoremail};
                     const token = jwt.sign(payload,secret,{
-                        expiresIn:60*60*24
+                        expiresIn:60*60
                     });
                     res.cookie('token',token,{httpOnly:true})
                     .sendStatus(200);

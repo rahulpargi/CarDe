@@ -1,5 +1,5 @@
 import React from 'react';
-import {Form,Button} from 'react-bootstrap';
+import {Form,Button,Alert} from 'react-bootstrap';
 import {Link } from 'react-router-dom';
 import axios from 'axios'
 import "./Login.css";
@@ -12,7 +12,9 @@ class Login extends React.Component{
     
         this.state = {
             adjustoremail: '',
-            adjustor_password: ''
+            adjustor_password: '',
+            showAlert:false,
+            alertMessage:''
         };
     }
 
@@ -39,15 +41,23 @@ class Login extends React.Component{
            }
         })
         .catch(error=>{
-            console.log('error');
+            console.log(error.response.data.error);
+            this.setState({alertMessage:error.response.data.error});
+            this.setState({showAlert:!this.state.showAlert})
         });
     }
 
     render(){
+        let alert =(
+            <Alert dismissible variant="danger">
+                <Alert.Heading>{this.state.alertMessage}</Alert.Heading>
+                
+            </Alert>
+        )
         return(
-          <div className="Login" >
+          <div className="login-form" >
             <Form onSubmit={this.handleSubmit}>
-         
+                {this.state.showAlert && alert}
                 <Form.Group controlId="adjustoremail">
                     <Form.Label>Email</Form.Label>
                     <Form.Control 
@@ -69,9 +79,7 @@ class Login extends React.Component{
                         placeholder="Password" />
                 </Form.Group>
                 
-                <Form.Group controlId="formBasicChecbox">
-                    <Form.Check type="checkbox" label="Remember Me" />
-                </Form.Group>
+                
                 <Form.Group controlId="formBasicChecbox">
                 <Button
                     block
@@ -94,7 +102,7 @@ class Login extends React.Component{
                    
                 </Button></Link>
                 </Form.Group>
-                
+               
                 
                
                

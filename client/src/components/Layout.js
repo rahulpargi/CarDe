@@ -1,8 +1,6 @@
 import React,{Component} from 'react';
 import Header from './Header';
-import Profile from './Profile';
-import CreateClaim from './CreateClaim';
-import {Route,Link} from 'react-router-dom'
+import './Layout.css'
 
 
 
@@ -10,7 +8,7 @@ import {Route,Link} from 'react-router-dom'
 class Layout extends Component{
     render(){
         return(
-            <div>
+            <div className="layout">
               <Header/> 
               {this.props.children}
               

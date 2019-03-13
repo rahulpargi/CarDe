@@ -8,6 +8,11 @@ import Dashboard from './components/Dashboard'
 import Register from './components/Register';
 import Auth from './components/Auth';
 import Error404 from './components/Error404'
+import { library } from '@fortawesome/fontawesome-svg-core'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPlus)
 
 class App extends Component {
  
