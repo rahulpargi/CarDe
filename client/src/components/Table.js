@@ -1,11 +1,13 @@
 import React from 'react';
 import {Table,Row,Col,Button} from 'react-bootstrap'
 import './Table.css';
+import Search from './Search'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const DataTable= (props)=>{
     return(
         <div className="container">
+            <Search/>
             <div className="table-wrapper">
                 <div className="table-title">
                     <Row>

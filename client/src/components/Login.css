@@ -55,8 +55,8 @@
 	}
 	.login-form .btn {
 		color: #fff;
-background-color: #428bca;
-border-color: #357ebd;
+		background-color: #428bca;
+		border-color: #357ebd;
 	}
 	.login-form .btn:hover, .login-form .btn:focus {
 		background: #428bca;

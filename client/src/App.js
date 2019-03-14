@@ -9,10 +9,10 @@ import Register from './components/Register';
 import Auth from './components/Auth';
 import Error404 from './components/Error404'
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faPlus)
+import { faPlus,faSearch } from '@fortawesome/free-solid-svg-icons'
+
+library.add(faPlus,faSearch)
 
 class App extends Component {
  
@@ -21,7 +21,7 @@ class App extends Component {
     return (
     
       
-      <div className="App">
+      <div >
       <Switch>
      
         <Route exact path="/" component={Login}/>
