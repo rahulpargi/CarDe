@@ -1,5 +1,6 @@
-import React,{Component} from 'react';
-import {Navbar,Nav} from 'react-bootstrap'
+import React from 'react';
+import {Navbar,Nav,NavItem } from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap'
 import './Header.css'
 
 
@@ -20,10 +21,12 @@ const Header=()=>{
                 
                   
                         <Nav className="nav navbar-nav navbar-right ml-auto">
-                          
+                           
+                  
                             <Nav.Link className="nav-link" href="/profile">Home</Nav.Link>
+                          
                             <Nav.Link className="nav-link" href="/create">Create</Nav.Link>
-                            <Nav.Link className="nav-link" href="/view">Dashboard</Nav.Link>
+                            <Nav.Link className="nav-link" href="/view">Dashboard</Nav.Link> 
                             
                             
                            

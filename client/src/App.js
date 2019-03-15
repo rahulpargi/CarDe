@@ -8,7 +8,8 @@ import Dashboard from './components/Dashboard'
 import Register from './components/Register';
 import Auth from './components/Auth';
 import Error404 from './components/Error404'
-import { library } from '@fortawesome/fontawesome-svg-core'
+import { library } from '@fortawesome/fontawesome-svg-core';
+
 
 import { faPlus,faSearch } from '@fortawesome/free-solid-svg-icons'
 
