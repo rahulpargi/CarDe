@@ -34,21 +34,21 @@ class Dashboard extends Component{
                             <Form.Control 
                                 required
                                 autoFocus
-                                onChange={this.handleChange}
-                                diabled
+                               
+                                
                                 value="11.00"
-                            
+                                disabled="disabled"
                                 type="text" 
                                 placeholder="11.00" />
                         
                         </Form.Group>
                         <Form.Group controlId="total_images_scanned" >
-                            <Form.Label>CTotal Images Scanned</Form.Label>
+                            <Form.Label>Total Images Scanned</Form.Label>
                             <Form.Control 
                                 required
                                 autoFocus
-                                onChange={this.handleChange}
                                 
+                                disabled="disabled"
                                 value="13.00"
                                 type="text" 
                                 placeholder="" />
@@ -59,9 +59,9 @@ class Dashboard extends Component{
                             <Form.Control 
                                 required
                                 autoFocus
-                                onChange={this.handleChange}
+                               
                                 value="51%"
-                            
+                                disabled="disabled"
                                 type="text" 
                                 placeholder="" />
                         
@@ -71,9 +71,9 @@ class Dashboard extends Component{
                             <Form.Control 
                                 required
                                 autoFocus
-                                onChange={this.handleChange}
+                                
                                 value="$1200.00"
-                            
+                                disabled="disabled"
                                 type="text" 
                                 placeholder="" />
                         
@@ -83,9 +83,9 @@ class Dashboard extends Component{
                             <Form.Control 
                                 required
                                 autoFocus
-                                onChange={this.handleChange}
+                                
                                 value="85%"
-                            
+                                disabled="disabled"
                                 type="text" 
                                 placeholder="" />
                         
