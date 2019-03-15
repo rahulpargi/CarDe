@@ -1,8 +1,8 @@
 import React,{Component} from 'react';
 import Layout from './Layout';
-import {Row,Col,Container,Form,Image,Link,Button} from 'react-bootstrap';
+import {Row,Col,Container,Form,Image,Button} from 'react-bootstrap';
 import ClaimTable from './ClaimTable'
-import axios from 'axios';
+
 import Front from '../assets/Front.jpg'
 import './Button.css'
 

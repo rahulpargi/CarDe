@@ -1,10 +1,12 @@
 import React,{Component} from 'react';
-import {Row,Col,Container,InputGroup,FormControl} from 'react-bootstrap';
+import {Row,Col,Container,Image,Form} from 'react-bootstrap';
 import Layout from './Layout'
 import ViewTable from './ViewTable';
 import DetailTable from './DetailTable';
 import Chart from './Chart';
-import axios from 'axios'
+import axios from 'axios';
+import Logo from '../assets/Front.jpg';
+import './Dashboard.css'
 
 
 
@@ -22,55 +24,88 @@ class Dashboard extends Component{
         return(
            <Layout>
                <Container fluid>
-               
-                <Row>
-                    <Col className="shadow-lg p-3 mb-5 bg-white rounded">
-                        <Chart/>
-                    </Col>
-                    <Col className="shadow-lg p-3 mb-5 bg-white rounded">
-                        <InputGroup size="sm" className="mb-3">
-                                <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-sm">Total Number Of Parts Scanned</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="11.00"  />
-                        </InputGroup>
-                        <InputGroup size="sm" className="mb-3">
-                                <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-sm">Total Images Scanned</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="13.00"  />
-                        </InputGroup>
-                        <InputGroup size="sm" className="mb-3">
-                                <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-sm">Estimated Percentage</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="51%"  />
-                        </InputGroup>
-                        <InputGroup size="sm" className="mb-3">
-                                <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-sm">Estimated Cost</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="$1200.00"  />
-                        </InputGroup>
-                        <InputGroup size="sm" className="mb-3">
-                                <InputGroup.Prepend>
-                                <InputGroup.Text id="inputGroup-sizing-sm">Total Loss Prediction</InputGroup.Text>
-                                </InputGroup.Prepend>
-                                <FormControl aria-label="Small" aria-describedby="inputGroup-sizing-sm" value="85%"  />
-                        </InputGroup>
-                    </Col>
-                    <Col className="shadow-lg p-3 mb-5 bg-white rounded">
-                        <h3>Estimated Parts</h3>
-                        <ViewTable/>
-                    </Col>
-                </Row>
-                <Row>
-                    <Col className="shadow-lg p-3 mb-5 bg-white rounded">
-                        <h3>Images Uploaded</h3>
-                        <DetailTable/>
-                    </Col>
-                
-                </Row>
+                    <Row>
+                        <Col className="col-md-3 space">
+                            <Chart/>
+                        </Col>
+                        <Col className="col-md-3 space ">
+                        <Form.Group controlId="total_parts" >
+                            <Form.Label>Total Number Of Parts Scanned</Form.Label>
+                            <Form.Control 
+                                required
+                                autoFocus
+                               
+                                
+                                value="11.00"
+                                disabled="disabled"
+                                type="text" 
+                                placeholder="11.00" />
+                        
+                        </Form.Group>
+                        <Form.Group controlId="total_images_scanned" >
+                            <Form.Label>Total Images Scanned</Form.Label>
+                            <Form.Control 
+                                required
+                                autoFocus
+                                
+                                disabled="disabled"
+                                value="13.00"
+                                type="text" 
+                                placeholder="" />
+                        
+                        </Form.Group>
+                        <Form.Group controlId="estimate_percentage" >
+                            <Form.Label>Estimate Percentage</Form.Label>
+                            <Form.Control 
+                                required
+                                autoFocus
+                               
+                                value="51%"
+                                disabled="disabled"
+                                type="text" 
+                                placeholder="" />
+                        
+                        </Form.Group>
+                        <Form.Group controlId="Estimated Cost" >
+                            <Form.Label>Estimated Cost</Form.Label>
+                            <Form.Control 
+                                required
+                                autoFocus
+                                
+                                value="$1200.00"
+                                disabled="disabled"
+                                type="text" 
+                                placeholder="" />
+                        
+                        </Form.Group>
+                        <Form.Group controlId="Total Loss Prediction" >
+                            <Form.Label>Total Loss Prediction</Form.Label>
+                            <Form.Control 
+                                required
+                                autoFocus
+                                
+                                value="85%"
+                                disabled="disabled"
+                                type="text" 
+                                placeholder="" />
+                        
+                        </Form.Group>
+                        </Col>
+                        <Col className="col-md-6">
+                            <ViewTable/>
+                        </Col>
+                       
+                    </Row>
+                  
+                    <Row>
+                        <Col>
+                            <DetailTable/>
+                        </Col>
+                        <Col>
+                            <Image src={Logo} className="images"/>
+                        </Col>
+                       
+                    </Row>
                 </Container>
             </Layout>
         )
