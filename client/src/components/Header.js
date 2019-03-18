@@ -1,6 +1,6 @@
 import React from 'react';
-import {Navbar,Nav,NavItem } from 'react-bootstrap';
-import {LinkContainer} from 'react-router-bootstrap'
+import {Navbar,Nav } from 'react-bootstrap';
+
 import './Header.css'
 
 

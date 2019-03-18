@@ -2,28 +2,56 @@ import React,{Component} from 'react';
 import Layout from './Layout';
 import {Row,Col,Container,Form,Image,Button} from 'react-bootstrap';
 import ClaimTable from './ClaimTable'
-
 import Front from '../assets/Front.jpg'
 import './Button.css'
 
 
-
-
 class CreateClaim extends Component{
     state={
-        message:'Loading'
+        message:'Loading',
+        reference_number:"",
+        images_uploaded:'',
+        images_missing:"",
+        analysis_status:"Not Started",
+        make:"",
+        year:"",
+        vin_number:"",
+        images:[]
+        
     }
     componentDidMount(){
         fetch('/api/create')
         .then(res => res.text())
         .then(res => this.setState({message: res}));
     }
+
+    handleChange=(event)=>{
+        this.setState({
+            [event.target.id]:event.target.value
+        })
+    }
+
+    handleImages=(e)=>{
+        //e.preventDefault();
+        
+        
+    }
+
+    handleSubmit=(e)=>{
+        e.preventDefault();
+        const formData = new FormData();
+        formData.append('')
+        alert('Form Submitted');
+        
+        
+    }
     render(){
         return(
             
             <Layout>
                 <Container fluid>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
+                {JSON.stringify(this.state)}
                     <Row>
                         <Col className="col-md-12">
                             <h2><b>Claim Reference Number: ABA120</b></h2>
@@ -88,8 +116,6 @@ class CreateClaim extends Component{
                                     required
                                     autoFocus
                                     onChange={this.handleChange}
-                                    
-                                
                                     type="text" 
                                     placeholder="Enter Make" />
                                 
@@ -118,8 +144,6 @@ class CreateClaim extends Component{
                                 
                                     type="text" 
                                     placeholder="Enter VIN Number" />
-                                
-                            
                             </Form.Group>
                             <Form.Group controlId="formBasicChecbox">
                                 <Button
@@ -127,18 +151,15 @@ class CreateClaim extends Component{
                                     className="btn"
                                     variant="primary"
                                     type="submit"
-                                 
-                                   
-                                    >
+                                >
                                 Run Analysis
-                                
                                 </Button>
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
-                        <Col><ClaimTable/></Col>
-                        <Col><Image className="images" src={Front} fluid/></Col>
+                        <Col className="col-md-6"><ClaimTable handleImages={this.handleImages}/></Col>
+                        <Col className="col-md-6"><Image className="images" src={Front} fluid/></Col>
                     </Row>
                 </Form>
                 </Container>

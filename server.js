@@ -6,7 +6,9 @@ const path = require('path');
 const User = require('./models/User');
 const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
-const withAuth = require('./middleware')
+const withAuth = require('./middleware');
+const multer = require('multer');
+const upload = multer({ dest:'./uploads/'})
 
 const mongoose = require('mongoose');
 const mongo_uri = 'mongodb://localhost:27017/cardeeb';
