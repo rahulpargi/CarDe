@@ -8,6 +8,8 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const withAuth = require('./middleware')
 
+
+
 const mongoose = require('mongoose');
 const mongo_uri = 'mongodb://localhost:27017/cardeeb';
 const secret = 'secret';
@@ -28,7 +30,23 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'build')));
+// app.use(function(req,res,next){
 
+// })
+
+//Getting data from database
+app.get('/api/getData',function(req,res){
+    User.findOne({"claim_adjustor_id" : "ABA23"},function(err,user){
+        if(err) throw err;
+        else if(!user){
+            res.status(500)
+            .send("No User Found Try Again")
+        }else{
+            console.log(user);
+        }
+       
+    })
+})
 
 
 //POST Router to register user
@@ -94,9 +112,13 @@ app.post('/api/authenticate',function(req,res){
     })
 })
 app.get('/api/profile',withAuth,function(req,res){
+    //const a  = req.adjustoremail
+    console.log( req.adjustoremail )
+  
     res.status(200).send("Success");
 });
 app.get('/api/view',withAuth,function(req,res){
+   
     res.status(200).send("Success");
 });
 app.get('/api/create',withAuth,function(req,res){
@@ -122,7 +144,9 @@ app.get('/checkToken',withAuth,function(req,res){
 });
 app.get('/logout',function(req,res){
     let cookie = req.cookies;
-    console.log(cookie)
+    res.clearCookie('cookie.token')
+    
+    res.sendStatus(200);
 })
 
 

@@ -27,6 +27,7 @@ const Header=()=>{
                           
                             <Nav.Link className="nav-link" href="/create">Create</Nav.Link>
                             <Nav.Link className="nav-link" href="/view">Dashboard</Nav.Link> 
+                            <Nav.Link className="nav-link" href="/logout">Log Out</Nav.Link> 
                             
                             
                            

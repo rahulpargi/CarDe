@@ -32,6 +32,7 @@ class App extends Component {
         <Route exact  path="/create" component={Auth(CreateClaim)}/>
     
         <Route  exact path="/view" component={Auth(Dashboard)}/>
+        {/* <Route  exact path="/logout" component={Logout}/> */}
        
        
  
