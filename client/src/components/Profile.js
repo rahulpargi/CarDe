@@ -19,13 +19,14 @@ class Profile extends Component{
     componentDidMount(){
         axios.get('/api/profile')
         
-        .then(res => this.setState({message: res.data}));
+        .then(res =>console.log(res));
     }
     render(){
         return(
             <Layout>
-           
+                
             <Container fluid>
+            
                 <Row>
 
                     <Col><Cards/></Col>

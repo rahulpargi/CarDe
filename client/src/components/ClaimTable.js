@@ -1,30 +1,52 @@
 import React from 'react';
-import {Table,Row,Col} from 'react-bootstrap'
+import {Table,Row,Col,Form} from 'react-bootstrap'
+import Axios from 'axios';
 
-import Search from './Search'
-import './ClaimTable.css'
 
-const ClaimTable= (props)=>{
-    return(
+
+class ClaimTable extends React.Component{
+  state={
+    data:''
+  }
+  
+  handleInput=(e)=>{
+    
+    const data = new FormData();
+    data.append('file',e.target.files[0]);
+    this.setState({data:data})
+    this.props.handleImage(data)
+    
+    //console.log(e.target.files[0])
+    
+    
+    
+    
+    
+    }
+    render(){
+     // this.props.handleImage(this.state.imageUrl);
+      return(
         <div className="container">
-          
+          {console.log(this.state.data)}
             <div className="table-wrapper">
                 <div className="table-title">
                     <Row>
                         <Col className="col-sm-6">
                             <h2><b>Upload Images</b></h2>
+                          
                         </Col>
                         
                     </Row>
 
                 </div>
+                
                 <Table className="table table-striped table-hover">
         
                 <thead>
                     <tr>
                     
                     <th>ITEM</th>
-                    <th>COUNT</th>
+                    
                     <th></th>
                     
                     </tr>
@@ -32,11 +54,11 @@ const ClaimTable= (props)=>{
                 <tbody>
                     <tr>
                     <td>Front</td>
-                    <td>9.00</td>
+                   
                     <td>
                       <div className="file btn btn-md btn-primary">
                             Upload
-                            <input  className="btn-file" type="file" name="file"/>
+                            <input  className="btn-file" onChange={this.handleInput} type="file" name="file"/>
                       </div>
                     </td>
                    
@@ -45,9 +67,9 @@ const ClaimTable= (props)=>{
                     </tr>
                     <tr>
                     <td>Back</td>
-                    <td>9.00</td>
+                   
                     <td>
-                      <div class="file btn btn-md btn-primary">
+                      <div className="file btn btn-md btn-primary">
                             Upload
                             <input className="btn-file" type="file" name="file"/>
                       </div>
@@ -56,9 +78,9 @@ const ClaimTable= (props)=>{
                     </tr>
                     <tr>
                     <td>Right Side</td>
-                    <td>9.00</td>
+                   
                     <td>
-                      <div class="file btn btn-md btn-primary">
+                      <div className="file btn btn-md btn-primary">
                             Upload
                             <input className="btn-file" type="file" name="file"/>
                       </div>
@@ -67,9 +89,9 @@ const ClaimTable= (props)=>{
                     </tr>
                     <tr>
                     <td>Left Side</td>
-                    <td>9.00</td>
+                    
                     <td>
-                      <div class="file btn btn-md btn-primary">
+                      <div className="file btn btn-md btn-primary">
                             Upload
                             <input className="btn-file" type="file" name="file"/>
                       </div>
@@ -78,9 +100,9 @@ const ClaimTable= (props)=>{
                     </tr>
                     <tr>
                     <td>Front Wheel - Right</td>
-                    <td>9.00</td>
+                   
                     <td>
-                      <div class="file btn btn-md btn-primary">
+                      <div className="file btn btn-md btn-primary">
                             Upload
                             <input className="btn-file" type="file" name="file"/>
                       </div>
@@ -89,9 +111,9 @@ const ClaimTable= (props)=>{
                     </tr>
                     <tr>
                     <td>Front Wheel - Left</td>
-                    <td>9.00</td>
+                   
                     <td>
-                      <div class="file btn btn-md btn-primary">
+                      <div className="file btn btn-md btn-primary">
                             Upload
                             <input  className="btn-file" type="file" name="file"/>
                       </div>
@@ -100,9 +122,9 @@ const ClaimTable= (props)=>{
                     </tr>
                     <tr>
                     <td>Back Wheel - Right</td>
-                    <td>9.00</td>
+                   
                     <td>
-                      <div class="file btn btn-md btn-primary">
+                      <div className="file btn btn-md btn-primary">
                             Upload
                             <input className="btn-file" type="file" name="file"/>
                       </div>
@@ -116,6 +138,7 @@ const ClaimTable= (props)=>{
         
             </div>
     );
+    }
 }
 
 

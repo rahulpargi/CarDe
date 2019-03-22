@@ -110,7 +110,7 @@ app.post('/api/authenticate',function(req,res){
     })
 })
 app.get('/api/profile',withAuth,function(req,res){
-    console.log( req.adjustoremail)
+  
   
     res.status(200).send("Success");
 });
@@ -119,7 +119,22 @@ app.get('/api/view',withAuth,function(req,res){
     res.status(200).send("Success");
 });
 app.get('/api/create',withAuth,function(req,res){
-    res.status(200).send("Success");
+
+    User.findOne({"adjustoremail" : req.adjustoremail},function(err,user){
+        if(err) throw err;
+        else if(!user){
+            res.status(500)
+            .send("No User Found Try Again")
+        }else{
+        
+         // res.json(user);
+          res.status(200).send(user)
+           
+        }
+       
+    })
+    
+    
 });
 //error handler
 app.use((err,req,res,next)=>{

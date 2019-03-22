@@ -5,28 +5,53 @@ import ClaimTable from './ClaimTable'
 
 import Front from '../assets/Front.jpg'
 import './Button.css'
+import Axios from 'axios';
 
 
 
 
 class CreateClaim extends Component{
     state={
-        message:'Loading'
+        message:{},
+        imageUrl:''
     }
     componentDidMount(){
-        fetch('/api/create')
-        .then(res => res.text())
-        .then(res => this.setState({message: res}));
+        Axios.get('/api/create')
+        .then(res=>{
+            this.setState({message:res.data});
+            console.log(res.data)
+            
+            
+        })
+    }
+    handleImages=(image)=>{
+        console.log(image)
+        this.setState({imageUrl:image})
+    }
+    handleSubmit=(event)=>{
+        event.preventDefault();
+        fetch('http://localhost:5000/upload', {
+        method: 'POST',
+        mode:'cors',
+        body: this.state.imageUrl,
+        }).then((response) => {
+        response.json().then((body) => {
+            console.log(body)
+            //this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+        });
+        });
     }
     render(){
+        {JSON.stringify(this.state.imageUrl)}
         return(
             
             <Layout>
                 <Container fluid>
-                <Form>
+                <Form onSubmit={this.handleSubmit}>
                     <Row>
+                     
                         <Col className="col-md-12">
-                            <h2><b>Claim Reference Number: ABA120</b></h2>
+                            <h2><b>Claim Reference Number:{this.state.message.claim_adjustor_id}</b></h2>
                         </Col>
                         <Col className="col-md-6">
                         <Form.Group controlId="reference_number" >
@@ -68,7 +93,7 @@ class CreateClaim extends Component{
                         
                         </Form.Group>
                         <Form.Group controlId="analysis_Status" >
-                            <Form.Label>Analysis Statue</Form.Label>
+                            <Form.Label>Analysis Status</Form.Label>
                             <Form.Control 
                                 required
                                 autoFocus
@@ -137,7 +162,7 @@ class CreateClaim extends Component{
                         </Col>
                     </Row>
                     <Row>
-                        <Col><ClaimTable/></Col>
+                        <Col><ClaimTable handleImage={this.handleImages}/></Col>
                         <Col><Image className="images" src={Front} fluid/></Col>
                     </Row>
                 </Form>
