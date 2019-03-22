@@ -18,7 +18,7 @@ var withAuth = function(req,res,next){
             if(err){
                 res.status(401).send('Unauthorized: Invalid Token');
             }else{
-                req.adjustoremail = decoded.email;
+                req.adjustoremail = decoded.adjustoremail;
                 next();
             }
         })

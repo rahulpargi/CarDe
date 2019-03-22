@@ -30,9 +30,7 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({'extended':'false'}));
 app.use(express.static(path.join(__dirname, 'build')));
-// app.use(function(req,res,next){
 
-// })
 
 //Getting data from database
 app.get('/api/getData',function(req,res){
@@ -112,8 +110,7 @@ app.post('/api/authenticate',function(req,res){
     })
 })
 app.get('/api/profile',withAuth,function(req,res){
-    //const a  = req.adjustoremail
-    console.log( req.adjustoremail )
+    console.log( req.adjustoremail)
   
     res.status(200).send("Success");
 });
