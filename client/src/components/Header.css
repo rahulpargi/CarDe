@@ -21,10 +21,15 @@ body{
     margin-right: 10px;
 }
 .navbar .navbar-brand {
+    display: flex;
+    align-items:center;
     color: #555;
     padding-left: 0;
     padding-right: 50px;
     font-family: 'Merienda One', sans-serif;
+}
+.navbar .navbar-brand>img {
+    padding: 7px 14px;
 }
 .navbar .navbar-brand i {
     font-size: 20px;

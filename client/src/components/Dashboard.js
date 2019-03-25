@@ -4,7 +4,6 @@ import Layout from './Layout'
 import ViewTable from './ViewTable';
 import DetailTable from './DetailTable';
 import Chart from './Chart';
-import axios from 'axios';
 import Logo from '../assets/Front.jpg';
 import './Dashboard.css'
 

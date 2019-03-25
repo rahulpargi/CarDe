@@ -42,7 +42,7 @@ class CreateClaim extends Component{
         });
     }
     render(){
-        {JSON.stringify(this.state.imageUrl)}
+        
         return(
             
             <Layout>

@@ -95,7 +95,7 @@ class Login extends React.Component{
                    
                     variant="primary"
                     type="submit"
-                    Component={Link}
+                    component={Link}
                     to="/register"
                     >
                    Register
