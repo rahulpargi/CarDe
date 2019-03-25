@@ -3,6 +3,7 @@ import {Form,Button,Alert} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'
 import "./Login.css";
+import Toastify from '../../components/Toastify'
 
 
 
@@ -14,7 +15,8 @@ class Login extends React.Component{
             adjustoremail: '',
             adjustor_password: '',
             showAlert:false,
-            alertMessage:''
+            alertMessage:'',
+            isLoading:false
         };
     }
 
@@ -30,24 +32,32 @@ class Login extends React.Component{
 
     handleSubmit=event=>{
         event.preventDefault();
+        this.setState({isLoading:true})
         const data=this.state;
         axios.post('/api/authenticate',data)
         .then(res=>{
            if(res.status === 200){
+               this.setState({isLoading:false})
                this.props.history.push('/profile');
            }else{
+              
                const error = new Error(res.error);
-               throw error
+               throw error;
+               
            }
         })
         .catch(error=>{
+            this.setState({isLoading:false})
             console.log(error.response.data.error);
+            <Toastify error={error.response.data.error}/>
             this.setState({alertMessage:error.response.data.error});
             this.setState({showAlert:!this.state.showAlert})
         });
     }
 
     render(){
+        const { isLoading } = this.state;
+        
         let alert =(
             <Alert dismissible variant="danger">
                 <Alert.Heading>{this.state.alertMessage}</Alert.Heading>
@@ -56,6 +66,7 @@ class Login extends React.Component{
         )
         return(
           <div className="login-form" >
+           
             <Form onSubmit={this.handleSubmit}>
                 {this.state.showAlert && alert}
                 <Form.Group controlId="adjustoremail">
@@ -84,9 +95,10 @@ class Login extends React.Component{
                 <Button
                     block
                     disabled={!this.validateForm()} 
+                    onClick={!isLoading ? this.handleSubmit : null}
                     variant="primary"
                     type="submit">
-                    Login
+                   {isLoading ? 'Loading…' : 'Login'}
                 </Button>
                 </Form.Group>
                 <Form.Group controlId="formBasicChecbox">
