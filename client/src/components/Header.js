@@ -15,23 +15,23 @@ const Header=()=>{
                         </Navbar.Brand>
                     </div>
                     <div className="collapse navbar-collapse justify-content-start">
-                        
-
-                  
-                
-                  
                         <Nav className="nav navbar-nav navbar-right ml-auto">
-                           
-                  
-                            <Nav.Link className="nav-link" href="/profile">Home</Nav.Link>
                           
-                            <Nav.Link className="nav-link" href="/create">Create</Nav.Link>
-                            <Nav.Link className="nav-link" href="/view">Dashboard</Nav.Link> 
-                            <Nav.Link className="nav-link" href="/logout">Log Out</Nav.Link> 
-                            
-                            
-                           
-                           
+                                <LinkContainer to="/profile">   
+                                   <NavItem className="nav-link" > Home</NavItem>
+                                </LinkContainer>
+                                <LinkContainer to="/create">
+                                    <NavItem className="nav-link" >Create</NavItem>
+                                    {/* <Nav.Link className="nav-link" >Create</Nav.Link> */}
+                                </LinkContainer>
+                                <LinkContainer to="/view">
+                                    <NavItem className="nav-link" >Dashboard</NavItem>
+                                    {/* <Nav.Link className="nav-link" >Dashboard</Nav.Link>  */}
+                                </LinkContainer>
+                                <LinkContainer to="/logout">
+                                    <NavItem className="nav-link" >Logout</NavItem>
+                                    {/* <Nav.Link className="nav-link" >Log Out</Nav.Link>  */}
+                                </LinkContainer>
                         </Nav>
                         
                    
