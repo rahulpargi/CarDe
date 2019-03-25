@@ -1,6 +1,6 @@
 import React from 'react';
 import {Form,Button,Alert} from 'react-bootstrap';
-import {Link } from 'react-router-dom';
+import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'
 import "./Login.css";
 
@@ -90,17 +90,14 @@ class Login extends React.Component{
                 </Button>
                 </Form.Group>
                 <Form.Group controlId="formBasicChecbox">
-                <Link to="/register">  <Button
-                    block
-                   
-                    variant="primary"
-                    type="submit"
-                    component={Link}
-                    to="/register"
-                    >
-                   Register
-                   
-                </Button></Link>
+                <LinkContainer to="/register">
+                    <Button
+                        block
+                        variant="primary"
+                        type="submit">
+                        Register
+                   </Button>
+                </LinkContainer>
                 </Form.Group>
                
                 

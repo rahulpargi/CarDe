@@ -29,22 +29,10 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({'extended':'false'}));
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, '/client/build')));
+console.log(path.join(__dirname, '/client/build'))
 
 
-//Getting data from database
-app.get('/api/getData',function(req,res){
-    User.findOne({"claim_adjustor_id" : "ABA23"},function(err,user){
-        if(err) throw err;
-        else if(!user){
-            res.status(500)
-            .send("No User Found Try Again")
-        }else{
-            console.log(user);
-        }
-       
-    })
-})
 
 
 //POST Router to register user
