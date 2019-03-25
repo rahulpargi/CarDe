@@ -3,7 +3,7 @@ import CanvasJSReact from '../assets/canvasjs.react'
 const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 
-
+//need to convert it to functional component
 class Chart extends Component{
     render(){
         const options = {

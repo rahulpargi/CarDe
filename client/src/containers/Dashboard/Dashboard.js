@@ -1,11 +1,11 @@
 import React,{Component} from 'react';
 import {Row,Col,Container,Image,Form} from 'react-bootstrap';
-import Layout from './Layout'
-import ViewTable from './ViewTable';
-import DetailTable from './DetailTable';
-import Chart from './Chart';
-import Logo from '../assets/Front.jpg';
+import ViewTable from '../../components/ViewTable/ViewTable';
+import Chart from '../../components/Chart';
+import Logo from '../../assets/Front.jpg';
 import './Dashboard.css'
+import DetailTable from '../../components/DetailTable/DetailTable';
+import Layout from '../../hoc/Layout/Layout';
 
 
 

@@ -1,11 +1,12 @@
 import React,{Component} from 'react';
 import {Row,Col,Container} from 'react-bootstrap';
-import DataTable from './Table';
+import DataTable from '../../components/DataTable/DataTable';
 
-import Cards from './Cards'
+import Cards from '../../components/Cards/Cards'
 
-import Layout from './Layout'
+
 import axios from 'axios';
+import Layout from '../../hoc/Layout/Layout';
 
 
 

@@ -9,91 +9,91 @@ const ImageSchema = ({
     claim_reference_no:{
         type:String,
         required:true,
-        unique:true  
+       
     },
     automobile_reference_no:{
         type:String,
         required:true,
-        unique:true  
+        
     },
     make:{
         type:String,
         required:true,
-        unique:true  
+       
     },
     year:{
         type:String,
         required:true,
-        unique:true  
+        
     },
     image_name:{
         type:String,
         required:true,
-        unique:true  
+        
     },
     file_location:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     data_uploaded:{
         type:Date,
         required:true,
-        unique:true  
+        
     },
     
     image_type:{
         type:String,
         required:true,
-        unique:true  
+        
     },
     
     part_reference_no:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     part_name:{
         type:String,
         required:true,
-        unique:true  
+        
     },
     
     damage_identified:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     
     damage_probability:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     damage_predicted:{
         type:String,
         required:true,
-        unique:true  
+         
     },
     net_score:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     severity:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     cost_replacement:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     date_last_predicted:{
         type:Date,
         required:true,
-        unique:true  
+        
     },
 })
 
@@ -102,22 +102,22 @@ const UserSchema = new mongoose.Schema({
     claim_adjustor_id:{
         type:String,
         required:true,
-        unique:true
+        
     },
     adjustorfirstname:{
         type:String,
         required:true,
-        unique:true
+        
     },
     adjustorlastname:{
         type:String,
         required:true,
-        unique:true
+        
     },
     adjustoremail:{
         type:String,
         required:true,
-        unique:true 
+         
     },
     adjustorphone:{
         type: String,
@@ -137,17 +137,17 @@ const UserSchema = new mongoose.Schema({
     company_id:{
         type:String,
         required:true,
-        unique:true  
+         
     },
     adjustor_username:{
         type:String,
         required:true,
-        unique:true  
+      
     },
     adjustor_password:{
         type:String,
         required:true,
-        unique:true  
+          
     },
     images:[ImageSchema]
 });
@@ -157,27 +157,27 @@ const CompanySchema=({
     company_id:{
         type:String,
         required:true,
-        unique:true
+        
     },
     company_name:{
         type:String,
         required:true,
-        unique:true
+        
     },
     company_address:{
         type:String,
         required:true,
-        unique:true
+        
     },
     company_zipcode:{
         type:String,
         required:true,
-        unique:true
+        
     },
     company_country:{
         type:String,
         required:true,
-        unique:true
+        
     },
     adjustors:[UserSchema]
 })

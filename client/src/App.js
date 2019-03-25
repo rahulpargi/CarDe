@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import {Route,Switch} from 'react-router-dom';
-import Login from './components/Login'
-import Profile from './components/Profile';
-import CreateClaim from './components/CreateClaim';
-import Dashboard from './components/Dashboard'
-import Register from './components/Register';
+import Login from './containers/Login/Login'
+import Profile from './containers/Profile/Profile';
+import CreateClaim from './containers/CreateClaim/CreateClaim';
+import Dashboard from './containers/Dashboard/Dashboard'
+import Register from './containers/Register/Register';
 import Auth from './components/Auth';
 import Error404 from './components/Error404'
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -32,7 +32,7 @@ class App extends Component {
         <Route exact  path="/create" component={Auth(CreateClaim)}/>
     
         <Route  exact path="/view" component={Auth(Dashboard)}/>
-        {/* <Route  exact path="/logout" component={Logout}/> */}
+       
        
        
  

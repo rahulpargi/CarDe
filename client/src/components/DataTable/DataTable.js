@@ -1,20 +1,22 @@
 import React from 'react';
-import {Table,Row,Col} from 'react-bootstrap'
+import {Table,Row,Col,Button} from 'react-bootstrap'
+import './DataTable.css';
+import Search from '../Search/Search'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
-
-import './ClaimTable.css'
-
-const DetailTable= (props)=>{
+const DataTable= (props)=>{
     return(
         <div className="container">
-          
+            <Search/>
             <div className="table-wrapper">
                 <div className="table-title">
                     <Row>
                         <Col className="col-sm-6">
-                            <h2><b>Images Processed</b></h2>
+                            <h2><b>Claim Reference Table</b></h2>
                         </Col>
-                        
+                        <Col className="col-sm-6">
+                            <Button className="btn btn-success"><FontAwesomeIcon icon="plus" /> New Claim</Button>
+                        </Col>
                     </Row>
 
                 </div>
@@ -23,56 +25,37 @@ const DetailTable= (props)=>{
                 <thead>
                     <tr>
                     
-                    <th>ITEM</th>
-                    <th>COUNT</th>
-                    <th></th>
-                    
+                    <th>Reference Number</th>
+                    <th>Image Count</th>
+                    <th>Damage Density</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Front</td>
+                    <td>ABA120</td>
                     <td>9.00</td>
-                    
-                   
-                 
+                    <td>60%</td>
                     
                     </tr>
                     <tr>
-                    <td>Back</td>
+                    <td>ABA120</td>
                     <td>9.00</td>
-                    
-                    
+                    <td>60%</td>
                     </tr>
                     <tr>
-                    <td>Right Side</td>
+                    <td>ABA120</td>
                     <td>9.00</td>
-                    
-                   
+                    <td>60%</td>
                     </tr>
                     <tr>
-                    <td>Left Side</td>
+                    <td>ABA120</td>
                     <td>9.00</td>
-                   
-                   
+                    <td>60%</td>
                     </tr>
                     <tr>
-                    <td>Front Wheel - Right</td>
+                    <td>ABA120</td>
                     <td>9.00</td>
-                   
-                    
-                    </tr>
-                    <tr>
-                    <td>Front Wheel - Left</td>
-                    <td>9.00</td>
-                    
-                    
-                    </tr>
-                    <tr>
-                    <td>Back Wheel - Right</td>
-                    <td>9.00</td>
-                   
-                    
+                    <td>60%</td>
                     </tr>
                     
                 </tbody>
@@ -85,4 +68,4 @@ const DetailTable= (props)=>{
 
 
 
-export default DetailTable;
+export default DataTable;

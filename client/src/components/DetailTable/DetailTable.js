@@ -2,7 +2,7 @@ import React from 'react';
 import {Table,Row,Col} from 'react-bootstrap'
 
 
-import './ClaimTable.css'
+import './DetailTable.css'
 
 const DetailTable= (props)=>{
     return(
@@ -25,18 +25,13 @@ const DetailTable= (props)=>{
                     
                     <th>ITEM</th>
                     <th>COUNT</th>
-                    <th>DAMAGE INTENSITY</th>
-                    <th>PROBABILITY</th>
-                    <th>VALUE</th>
+                    <th></th>
                     
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
                     <td>Front</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                     <td>9.00</td>
                     
                    
@@ -46,17 +41,11 @@ const DetailTable= (props)=>{
                     <tr>
                     <td>Back</td>
                     <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                     
                     
                     </tr>
                     <tr>
                     <td>Right Side</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                     <td>9.00</td>
                     
                    
@@ -64,17 +53,11 @@ const DetailTable= (props)=>{
                     <tr>
                     <td>Left Side</td>
                     <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                    
                    
                     </tr>
                     <tr>
                     <td>Front Wheel - Right</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                     <td>9.00</td>
                    
                     
@@ -82,17 +65,11 @@ const DetailTable= (props)=>{
                     <tr>
                     <td>Front Wheel - Left</td>
                     <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                     
                     
                     </tr>
                     <tr>
                     <td>Back Wheel - Right</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                     <td>9.00</td>
                    
                     

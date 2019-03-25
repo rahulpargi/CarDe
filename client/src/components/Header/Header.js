@@ -1,7 +1,7 @@
 import React from 'react';
 import {Navbar,Nav,NavItem } from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap';
-import Logo from '../assets/logo.jpg'
+import Logo from '../../assets/logo.jpg'
 import './Header.css'
 
 
