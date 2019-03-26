@@ -2,8 +2,6 @@ import React,{Component} from 'react';
 import Layout from '../../hoc/Layout/Layout';
 import {Row,Col,Container,Form,Image,Button} from 'react-bootstrap';
 import ClaimTable from '../ClaimTable/ClaimTable'
-
-
 import Front from '../../assets/Front.jpg'
 import './Button.css'
 import Axios from 'axios';
@@ -38,7 +36,7 @@ class CreateClaim extends Component{
         }).then((response) => {
         response.json().then((body) => {
             console.log(body)
-            //this.setState({ imageURL: `http://localhost:5000/${body.file}` });
+            
         });
         });
     }
@@ -47,7 +45,7 @@ class CreateClaim extends Component{
         return(
             
             <Layout>
-                <Container fluid>
+                <Container >
                 <Form onSubmit={this.handleSubmit}>
                     <Row>
                      
@@ -61,8 +59,6 @@ class CreateClaim extends Component{
                                 required
                                 autoFocus
                                 onChange={this.handleChange}
-                                
-                            
                                 type="text" 
                                 placeholder="Enter Reference Number" />
                         
@@ -135,7 +131,7 @@ class CreateClaim extends Component{
                             
                             </Form.Group>
                             <Form.Group controlId="vin_number" >
-                                <Form.Label>Year</Form.Label>
+                                <Form.Label>VIN Number</Form.Label>
                                 <Form.Control 
                                     required
                                     autoFocus

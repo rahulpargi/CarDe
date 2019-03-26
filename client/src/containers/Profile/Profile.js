@@ -1,10 +1,7 @@
 import React,{Component} from 'react';
 import {Row,Col,Container} from 'react-bootstrap';
 import DataTable from '../../components/DataTable/DataTable';
-
 import Cards from '../../components/Cards/Cards'
-
-
 import axios from 'axios';
 import Layout from '../../hoc/Layout/Layout';
 
@@ -15,7 +12,8 @@ import Layout from '../../hoc/Layout/Layout';
 
 class Profile extends Component{
     state={
-        message:'Loading'
+        message:'Loading',
+        
     }
     componentDidMount(){
         axios.get('/api/profile')

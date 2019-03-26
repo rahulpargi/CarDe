@@ -60,7 +60,7 @@ class Register extends React.Component{
         
         return(
             <div className="login-form">
-            
+            {JSON.stringify(this.state)}
             <Form onSubmit={this.handleSubmit}>
             {this.state.showAlert && alert}
             <h2 >Register</h2>

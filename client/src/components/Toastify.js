@@ -4,13 +4,25 @@ import 'react-toastify/dist/ReactToastify.css';
   
 
 class Toastify extends Component {
-    notify = () => toast(this.props.error);
+   
 
     render(){
+      
       return (
         <div>
+         {toast.error(this.props.error)}
+          <ToastContainer
+            position="top-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnVisibilityChange
+            draggable
+            pauseOnHover
           
-          <ToastContainer />
+          />
         </div>
       );
     }

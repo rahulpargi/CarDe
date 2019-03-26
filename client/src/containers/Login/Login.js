@@ -3,7 +3,7 @@ import {Form,Button,Alert} from 'react-bootstrap';
 import {LinkContainer} from 'react-router-bootstrap'
 import axios from 'axios'
 import "./Login.css";
-import Toastify from '../../components/Toastify'
+
 
 
 
@@ -49,7 +49,6 @@ class Login extends React.Component{
         .catch(error=>{
             this.setState({isLoading:false})
             console.log(error.response.data.error);
-            <Toastify error={error.response.data.error}/>
             this.setState({alertMessage:error.response.data.error});
             this.setState({showAlert:!this.state.showAlert})
         });

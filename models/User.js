@@ -194,11 +194,11 @@ UserSchema.pre('save',function(next){
         bcrypt.hash(document.adjustor_password,saltRounds,function(err,hashedPassword){
             if(err){
                 next(err);
-                console.log("called1")
+             
             }else{
-                console.log("called2")
+                
                 document.adjustor_password=hashedPassword;
-                console.log("called3");
+                
                 next();
             }
         });
