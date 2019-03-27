@@ -33,8 +33,8 @@ app.use(express.static(path.join(__dirname, '/client/build')));
 console.log(path.join(__dirname, '/client/build'))
 
 app.post('/api/upload',function(req,res){
-    
-    res.status(200).send("Upload Sucessfully");
+    console.log(req.body)
+    res.status(200).send({res});
 })
 //POST Router to register user
 app.post('/api/register',function(req,res){

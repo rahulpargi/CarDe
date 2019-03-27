@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, Row, Col, Button ,ProgressBar} from 'react-bootstrap'
+import { Table, Row, Col,ProgressBar } from 'react-bootstrap'
 import Axios from 'axios';
 
 
@@ -9,9 +9,10 @@ class ClaimTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      file: '',
-      imagePreviewUrl: "",
-      progress:''
+      imgname: '',
+      imgbytes: "",
+      progress: '',
+      predictionResult:""
     };
     this.handleInput = this.handleInput.bind(this);
   }
@@ -23,41 +24,42 @@ class ClaimTable extends React.Component {
 
     reader.onloadend = () => {
       this.setState({
-        file: file,
-        imagePreviewUrl: reader.result
+        imgname: 'ss',
+        imgbytes: reader.result
       });
-      Axios.post('/api/upload', reader.result, {
-        onUploadProgress: progressEvent =>this.setState({progress:Math.round((progressEvent.loaded/progressEvent.total *100))})
+      let result1 = reader.result.split(',')[1];
+
+
+      Axios.post('http://52.173.191.180:4000/Upload', { imgname: "test55.jpg", imagbytes: result1 }, {
+        onUploadProgress: progressEvent => this.setState({ progress: Math.round((progressEvent.loaded / progressEvent.total * 100)) })
       })
-      .then(res=>{
-        if(res.status === 200){
-          this.setState({progress:20});
-        }
-      })
-      
-     
-    } 
+        .then(res => {
+          console.log(res);
+          if (res.status === 200) {
+            this.setState({ progress: '' });
+            this.setState({predictionResult:res.data.prediction_result})
+          }
+        })
+
+
+    }
     reader.readAsDataURL(file);
-    
-
-
-
-
   }
- 
+
   render() {
-   
-  
+
+
     return (
       <div className="container">
-        
+      <Row>
+        <Col className="col-md-6">
         <div className="table-wrapper">
           <div className="table-title">
             <Row>
-            
+
               <Col className="col-sm-6">
                 <h2><b>Upload Images</b></h2>
-               
+
               </Col>
 
             </Row>
@@ -65,13 +67,13 @@ class ClaimTable extends React.Component {
           </div>
 
           <Table className="table table-striped table-hover">
-              
+
             <thead>
               <tr>
 
                 <th>ITEM</th>
 
-                <th></th> 
+                <th></th>
 
 
               </tr>
@@ -85,11 +87,11 @@ class ClaimTable extends React.Component {
                   <div className="file btn btn-md btn-primary">
                     Upload
                             <input className="btn-file" type="file" onChange={this.handleInput} />
-                           
+
                   </div>
-                  <ProgressBar animated now={this.state.progress}/>
+                  <ProgressBar animated now={this.state.progress} />
                 </td>
-                
+
 
 
               </tr>
@@ -163,6 +165,16 @@ class ClaimTable extends React.Component {
             </tbody>
           </Table>
         </div>
+
+        </Col>
+        <Col className="col-md-6">
+            <ProgressBar now={this.state.progress}/>
+            {JSON.stringify(this.state.predictionResult)}
+        </Col>
+      </Row>
+
+        
+       
 
       </div>
     );

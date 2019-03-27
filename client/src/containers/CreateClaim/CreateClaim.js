@@ -29,7 +29,7 @@ class CreateClaim extends Component{
     }
     handleSubmit=(event)=>{
         event.preventDefault();
-        fetch('http://localhost:5000/upload', {
+        fetch('/api/upload', {
         method: 'POST',
         mode:'cors',
         body: this.state.imageUrl,
@@ -45,7 +45,7 @@ class CreateClaim extends Component{
         return(
             
             <Layout>
-                <Container >
+                <Container fluid>
                 <Form onSubmit={this.handleSubmit}>
                     <Row>
                      
@@ -159,8 +159,11 @@ class CreateClaim extends Component{
                         </Col>
                     </Row>
                     <Row>
-                        <Col><ClaimTable handleImage={this.handleImages}/></Col>
-                        <Col><Image className="images" src={Front} fluid/></Col>
+                        <Col >
+                            <ClaimTable handleImage={this.handleImages}/>
+                        </Col>
+                        
+                        
                     </Row>
                 </Form>
                 </Container>
