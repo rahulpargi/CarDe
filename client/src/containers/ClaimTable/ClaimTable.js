@@ -1,6 +1,9 @@
 import React from 'react';
-import { Table, Row, Col,ProgressBar } from 'react-bootstrap'
+import { Table, Row, Col,ProgressBar  } from 'react-bootstrap';
 import Axios from 'axios';
+import Loader from '../../components/Spinner/Loader';
+
+
 
 
 
@@ -12,7 +15,8 @@ class ClaimTable extends React.Component {
       imgname: '',
       imgbytes: "",
       progress: '',
-      predictionResult:""
+      predictionResult:"",
+      showSpinner:false
     };
     this.handleInput = this.handleInput.bind(this);
   }
@@ -31,13 +35,14 @@ class ClaimTable extends React.Component {
 
 
       Axios.post('http://52.173.191.180:4000/Upload', { imgname: "test55.jpg", imagbytes: result1 }, {
-        onUploadProgress: progressEvent => this.setState({ progress: Math.round((progressEvent.loaded / progressEvent.total * 100)) })
+        onUploadProgress: progressEvent => this.setState({ progress: Math.round((progressEvent.loaded / progressEvent.total * 100)),showSpinner:true })
       })
         .then(res => {
           console.log(res);
           if (res.status === 200) {
             this.setState({ progress: '' });
-            this.setState({predictionResult:res.data.prediction_result})
+            this.setState({predictionResult:res.data});
+            this.setState({showSpinner:false})
           }
         })
 
@@ -47,6 +52,7 @@ class ClaimTable extends React.Component {
   }
 
   render() {
+    let loader = <Loader/>
 
 
     return (
@@ -89,7 +95,7 @@ class ClaimTable extends React.Component {
                             <input className="btn-file" type="file" onChange={this.handleInput} />
 
                   </div>
-                  <ProgressBar animated now={this.state.progress} />
+                 
                 </td>
 
 
@@ -168,8 +174,30 @@ class ClaimTable extends React.Component {
 
         </Col>
         <Col className="col-md-6">
-            <ProgressBar now={this.state.progress}/>
-            {JSON.stringify(this.state.predictionResult)}
+            <ProgressBar animated now={this.state.progress}/>
+            <Row>
+                <Col className="col-sm-6">
+                    <div className="thumb-wrapper">
+                        <div className="thumb-content">
+                            <h4><b>Assessment</b></h4>
+                              {this.state.showSpinner && loader}
+                            <h5>{this.state.predictionResult.assessment}</h5>
+                            
+                        </div>
+                    </div>
+                </Col>
+                <Col className="col-sm-6">
+                    <div className="thumb-wrapper">
+                        <div className="thumb-content">
+                            <h4><b>Affected Parts</b></h4>
+                            {this.state.showSpinner && loader}
+                            <h5>{this.state.predictionResult.damage_affected_parts}</h5>
+                            
+                        </div>
+                    </div>
+                </Col>
+               
+            </Row>    
         </Col>
       </Row>
 
