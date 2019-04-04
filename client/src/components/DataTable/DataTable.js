@@ -1,8 +1,10 @@
 import React from 'react';
-import {Table,Row,Col,Button} from 'react-bootstrap'
+import {Table,Row,Col,Button} from 'react-bootstrap';
+import {LinkContainer} from 'react-router-bootstrap'
 import './DataTable.css';
 import Search from '../Search/Search'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 
 const DataTable= (props)=>{
     return(
@@ -10,13 +12,18 @@ const DataTable= (props)=>{
             <Search/>
             <div className="table-wrapper">
                 <div className="table-title">
+                {/* {props.data.images.map((e)=>{
+
+                })} */}
                     <Row>
                         <Col className="col-sm-6">
                             <h2><b>Claim Reference Table</b></h2>
                         </Col>
+                        <LinkContainer to='/create'>
                         <Col className="col-sm-6">
                             <Button className="btn btn-success"><FontAwesomeIcon icon="plus" /> New Claim</Button>
                         </Col>
+                        </LinkContainer>
                     </Row>
 
                 </div>

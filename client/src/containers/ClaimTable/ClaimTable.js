@@ -2,18 +2,14 @@ import React from 'react';
 import { Table, Row, Col,ProgressBar  } from 'react-bootstrap';
 import Axios from 'axios';
 import Loader from '../../components/Spinner/Loader';
-
-
-
-
-
+import uniqid from 'uniqid'
 
 class ClaimTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      imgname: '',
-      imgbytes: "",
+      
+      
       progress: '',
       predictionResult:"",
       showSpinner:false
@@ -23,32 +19,22 @@ class ClaimTable extends React.Component {
 
 
   handleInput = (e) => {
-    let reader = new FileReader();
-    let file = e.target.files[0];
-
-    reader.onloadend = () => {
-      this.setState({
-        imgname: 'ss',
-        imgbytes: reader.result
-      });
-      let result1 = reader.result.split(',')[1];
+    var date = new Date();
+    var dd = date.getDate();
+    var mm = date.getMonth()+1; 
+    var yyyy =date.getFullYear();
+    date = mm+'/'+dd+'/'+yyyy;
 
 
-      Axios.post('http://52.173.191.180:4000/Upload', { imgname: "test55.jpg", imagbytes: result1 }, {
-        onUploadProgress: progressEvent => this.setState({ progress: Math.round((progressEvent.loaded / progressEvent.total * 100)),showSpinner:true })
-      })
-        .then(res => {
-          console.log(res);
-          if (res.status === 200) {
-            this.setState({ progress: '' });
-            this.setState({predictionResult:res.data});
-            this.setState({showSpinner:false})
-          }
-        })
+    //Image
+    
+    var imageName = e.target.files[0].name
+    var selectedImage = e.target.files[0]
+    var imageType=e.target.files[0].name.split('.')[1];
+    this.props.handleImage(selectedImage,imageName,imageType,date);
 
 
-    }
-    reader.readAsDataURL(file);
+    
   }
 
   render() {
@@ -58,6 +44,8 @@ class ClaimTable extends React.Component {
     return (
       <div className="container">
       <Row>
+       
+        
         <Col className="col-md-6">
         <div className="table-wrapper">
           <div className="table-title">
@@ -92,7 +80,7 @@ class ClaimTable extends React.Component {
                 <td>
                   <div className="file btn btn-md btn-primary">
                     Upload
-                            <input className="btn-file" type="file" onChange={this.handleInput} />
+                            <input className="btn-file" type="file" onChange={this.handleInput} name="selectedImage" accept="image/*"/>
 
                   </div>
                  
@@ -107,7 +95,7 @@ class ClaimTable extends React.Component {
                 <td>
                   <div className="file btn btn-md btn-primary">
                     Upload
-                            <input className="btn-file" type="button" name="file" onClick={this.handleSubmit} />
+                            <input className="btn-file" type="file"  onClick={this.handleInput}  accept="image/*"/>
                   </div>
                 </td>
 
@@ -118,7 +106,7 @@ class ClaimTable extends React.Component {
                 <td>
                   <div className="file btn btn-md btn-primary">
                     Upload
-                            <input className="btn-file" type="file" name="file" />
+                            <input className="btn-file" type="file" name="file"  accept="image/*"/>
                   </div>
                 </td>
 
@@ -129,7 +117,7 @@ class ClaimTable extends React.Component {
                 <td>
                   <div className="file btn btn-md btn-primary">
                     Upload
-                            <input className="btn-file" type="file" name="file" />
+                            <input className="btn-file" type="file" name="file"  accept="image/*"/>
                   </div>
                 </td>
 
@@ -140,7 +128,7 @@ class ClaimTable extends React.Component {
                 <td>
                   <div className="file btn btn-md btn-primary">
                     Upload
-                            <input className="btn-file" type="file" name="file" />
+                            <input className="btn-file" type="file" name="file" accept="image/*" />
                   </div>
                 </td>
 
@@ -151,7 +139,7 @@ class ClaimTable extends React.Component {
                 <td>
                   <div className="file btn btn-md btn-primary">
                     Upload
-                            <input className="btn-file" type="file" name="file" />
+                            <input className="btn-file" type="file" name="file"  accept="image/*"/>
                   </div>
                 </td>
 
@@ -162,7 +150,7 @@ class ClaimTable extends React.Component {
                 <td>
                   <div className="file btn btn-md btn-primary">
                     Upload
-                            <input className="btn-file" type="file" name="file" />
+                            <input className="btn-file" type="file" name="file" accept="image/*" />
                   </div>
                 </td>
 
@@ -179,7 +167,7 @@ class ClaimTable extends React.Component {
                 <Col className="col-sm-6">
                     <div className="thumb-wrapper">
                         <div className="thumb-content">
-                            <h4><b>Assessment</b></h4>
+                            <h4><b>Severity</b></h4>
                               {this.state.showSpinner && loader}
                             <h5>{this.state.predictionResult.assessment}</h5>
                             
@@ -189,7 +177,17 @@ class ClaimTable extends React.Component {
                 <Col className="col-sm-6">
                     <div className="thumb-wrapper">
                         <div className="thumb-content">
-                            <h4><b>Affected Parts</b></h4>
+                            <h4><b>Damaged Parts</b></h4>
+                            {this.state.showSpinner && loader}
+                            <h5>{this.state.predictionResult.damage_affected_parts}</h5>
+                            
+                        </div>
+                    </div>
+                </Col>
+                <Col className="col-sm-6">
+                    <div className="thumb-wrapper">
+                        <div className="thumb-content">
+                            <h4><b>Accuracy</b></h4>
                             {this.state.showSpinner && loader}
                             <h5>{this.state.predictionResult.damage_affected_parts}</h5>
                             

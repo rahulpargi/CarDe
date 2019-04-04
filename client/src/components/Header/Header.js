@@ -25,10 +25,7 @@ const Header=()=>{
                                 <LinkContainer to="/profile">   
                                    <NavItem className="nav-link" > Home</NavItem>
                                 </LinkContainer>
-                                <LinkContainer to="/create">
-                                    <NavItem  className="nav-link" >Create</NavItem>
-                                    {/* <Nav.Link className="nav-link" >Create</Nav.Link> */}
-                                </LinkContainer>
+                                
                                 <LinkContainer to="/view">
                                     <NavItem className="nav-link" >Dashboard</NavItem>
                                     {/* <Nav.Link className="nav-link" >Dashboard</Nav.Link>  */}

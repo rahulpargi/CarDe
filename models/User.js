@@ -11,11 +11,12 @@ const ImageSchema = ({
         required:true,
        
     },
-    automobile_reference_no:{
+    vin_number:{
         type:String,
         required:true,
-        
+       
     },
+   
     make:{
         type:String,
         required:true,
@@ -31,70 +32,39 @@ const ImageSchema = ({
         required:true,
         
     },
-    file_location:{
-        type:String,
-        required:true,
-          
-    },
-    data_uploaded:{
-        type:Date,
-        required:true,
-        
-    },
-    
     image_type:{
         type:String,
         required:true,
         
     },
-    
-    part_reference_no:{
-        type:String,
-        required:true,
-          
-    },
-    part_name:{
+    date_uploaded:{
         type:String,
         required:true,
         
     },
-    
-    damage_identified:{
-        type:String,
-        required:true,
-          
-    },
-    
-    damage_probability:{
-        type:String,
-        required:true,
-          
-    },
-    damage_predicted:{
+   
+    damaged_parts:{
         type:String,
         required:true,
          
     },
-    net_score:{
+    
+   
+    severity_of_damage:{
         type:String,
         required:true,
           
     },
-    severity:{
+    acurracy:{
         type:String,
         required:true,
           
     },
-    cost_replacement:{
+    imagePath:{
         type:String,
-        required:true,
-          
-    },
-    date_last_predicted:{
-        type:Date,
-        required:true,
-        
-    },
+        required:true
+    }
+    
 })
 
 //Adjustor  Schema

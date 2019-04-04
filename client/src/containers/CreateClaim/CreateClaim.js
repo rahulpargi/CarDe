@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import Layout from '../../hoc/Layout/Layout';
 import {Row,Col,Container,Form,Image,Button} from 'react-bootstrap';
 import ClaimTable from '../ClaimTable/ClaimTable'
-import Front from '../../assets/Front.jpg'
+import Front from '../../assets/Front.jpg';
+import Loader from '../../components/Spinner/Loader';
 import './Button.css'
 import Axios from 'axios';
 
@@ -12,48 +13,87 @@ import Axios from 'axios';
 class CreateClaim extends Component{
     state={
         message:{},
-        imageUrl:''
+        claim_reference_no:'',
+        vin_number:'',
+        make:'',
+        year:'',
+        image_name:'',
+        image_type:'',
+        selectedImage:"",
+        date_uploaded:'',
+        damaged_parts:'',
+        severity_of_damage:'',
+        accuracy:'89',
+        spinner:false
     }
+    
     componentDidMount(){
         Axios.get('/api/create')
         .then(res=>{
-            this.setState({message:res.data});
-            console.log(res.data)
+            // this.setState({message:res.data});
+            // console.log(res.data)
             
             
         })
     }
-    handleImages=(image)=>{
-        console.log(image)
-        this.setState({imageUrl:image})
+    
+    handleChange = (e)=>{
+        this.setState({
+            [e.target.id]:e.target.value
+        })
+    }
+    handleImages=(selectedImage,imageName,imageType,date)=>{
+        
+        this.setState({
+            selectedImage:selectedImage,
+            image_name:imageName,
+            image_type:imageType,
+            date_uploaded:date
+        })
     }
     handleSubmit=(event)=>{
+        this.setState({spinner:true})
+        const { selectedImage,image_name,image_type,date_uploaded,claim_reference_no,vin_number,make,damaged_parts,severity_of_damage,accuracy,year} = this.state;
         event.preventDefault();
-        fetch('/api/upload', {
-        method: 'POST',
-        mode:'cors',
-        body: this.state.imageUrl,
-        }).then((response) => {
-        response.json().then((body) => {
-            console.log(body)
-            
-        });
-        });
-    }
+        let formData = new FormData();
+        formData.append('selectedImage',selectedImage);
+        formData.append('image_name',image_name);
+        formData.append('image_type',image_type);
+        formData.append('date_uploaded',date_uploaded);
+        formData.append('claim_reference_no',claim_reference_no);
+        formData.append('vin_number',vin_number);
+        formData.append('make',make);
+        formData.append('damaged_parts',damaged_parts);
+        formData.append('severity_of_damage',severity_of_damage);
+        formData.append('accuracy',accuracy);
+        formData.append('year',year);
+        Axios.post('/api/create',formData)
+        .then(res=>{
+
+            console.log(res)
+        })
+        .catch(function(err){
+            console.log(err);
+        })
+
+
+
+    }   
     render(){
+        let loader = <Loader/>
         
         return(
             
             <Layout>
-                <Container fluid>
-                <Form onSubmit={this.handleSubmit}>
+                <Container >
+                <Form onSubmit={this.handleSubmit} method="POST"  >
                     <Row>
-                     
+                       
                         <Col className="col-md-12">
                             <h2><b>Claim Reference Number:{this.state.message.claim_adjustor_id}</b></h2>
                         </Col>
                         <Col className="col-md-6">
-                        <Form.Group controlId="reference_number" >
+                        <Form.Group controlId="claim_reference_no" >
                             <Form.Label>Claims Reference No</Form.Label>
                             <Form.Control 
                                 required
@@ -69,8 +109,8 @@ class CreateClaim extends Component{
                                 required
                                 autoFocus
                                 onChange={this.handleChange}
-                                
-                            
+                                disabled
+                                //value={this.state.images.length}
                                 type="text" 
                                 placeholder="5" />
                              
@@ -82,8 +122,7 @@ class CreateClaim extends Component{
                                 required
                                 autoFocus
                                 onChange={this.handleChange}
-                                
-                            
+                                disabled
                                 type="text" 
                                 placeholder="4.00" />
                              
@@ -95,8 +134,7 @@ class CreateClaim extends Component{
                                 required
                                 autoFocus
                                 onChange={this.handleChange}
-                                
-                            
+                                disabled
                                 type="text" 
                                 placeholder="Not Started" />
                              
@@ -160,7 +198,7 @@ class CreateClaim extends Component{
                     </Row>
                     <Row>
                         <Col >
-                            <ClaimTable handleImage={this.handleImages}/>
+                            <ClaimTable handleImage={this.handleImages} />
                         </Col>
                         
                         

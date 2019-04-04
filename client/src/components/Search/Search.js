@@ -21,7 +21,7 @@ const Search =(props)=>{
                     </Col>
                 
                     <Col className="col-auto">
-                        <button class="btn btn-lg btn-success" type="submit">Search</button>
+                        <button className="btn btn-lg btn-success" type="submit">Search</button>
                     </Col>
                 </Card.Body>
             </Form>
