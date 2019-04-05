@@ -2,7 +2,8 @@ import React,{Component} from 'react';
 import {Row,Col,Container,Image,Form} from 'react-bootstrap';
 import ViewTable from '../../components/ViewTable/ViewTable';
 import Chart from '../../components/Chart';
-import Logo from '../../assets/Front.jpg';
+
+
 import './Dashboard.css'
 import DetailTable from '../../components/DetailTable/DetailTable';
 import Layout from '../../hoc/Layout/Layout';
@@ -11,9 +12,13 @@ import Layout from '../../hoc/Layout/Layout';
 
 class Dashboard extends Component{
     state={
-        message:'Loading'
+        message:'Loading',
+        data1:[]
     }
     componentDidMount(){
+        
+        this.setState({data1:this.props.location.state.data});
+        
         fetch('/api/view')
         .then(res => res.text())
         .then(res => this.setState({message: res}));
@@ -23,11 +28,13 @@ class Dashboard extends Component{
         return(
            <Layout>
                <Container fluid>
+              
                     <Row>
                         <Col className="col-md-3 space">
-                            <Chart/>
+                            <Chart accuracy={this.state.data1.accuracy}/>
                         </Col>
                         <Col className="col-md-3 space ">
+                       
                         <Form.Group controlId="total_parts" >
                             <Form.Label>Total Number Of Parts Scanned</Form.Label>
                             <Form.Control 
@@ -48,7 +55,7 @@ class Dashboard extends Component{
                                 autoFocus
                                 
                                 disabled="disabled"
-                                value="13.00"
+                                value={this.state.data1.length}
                                 type="text" 
                                 placeholder="" />
                         
@@ -97,12 +104,10 @@ class Dashboard extends Component{
                     </Row>
                   
                     <Row>
-                        <Col>
-                            <DetailTable/>
+                        <Col >
+                            <DetailTable imagePath={this.state.data1.imagePath}/>
                         </Col>
-                        <Col>
-                            <Image src={Logo} className="images"/>
-                        </Col>
+                       
                        
                     </Row>
                 </Container>

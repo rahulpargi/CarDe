@@ -28,6 +28,7 @@ class App extends Component {
         <Route exact path="/" component={Login}/>
         <Route exact path="/register" component={Register}/>
         <Route exact path="/profile" component={Auth(Profile)}/>
+        <Route exact path="/profile/claim/:id" component={Auth(Dashboard)}/>
        
         <Route exact  path="/create" component={Auth(CreateClaim)}/>
     

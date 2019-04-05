@@ -55,7 +55,7 @@ const ImageSchema = ({
         required:true,
           
     },
-    acurracy:{
+    accuracy:{
         type:String,
         required:true,
           

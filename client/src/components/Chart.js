@@ -9,10 +9,10 @@ class Chart extends Component{
         const options = {
 			animationEnabled: true,
 			title: {
-				text: "Probability Of Prediction"
+				text: "Accuracy"
 			},
 			subtitles: [{
-				text: "85% ",
+				text: `${this.props.accuracy}%`,
 				verticalAlign: "center",
 				fontSize: 24,
 				dockInsidePlotArea: true
@@ -24,7 +24,7 @@ class Chart extends Component{
 				yValueFormatString: "#,###'%'",
 				dataPoints: [
 					
-					{ name: "Probability", y: 85 },
+					{ name: "Accuracy", y: `${this.props.accuracy}` },
 					
 				]
 			}]

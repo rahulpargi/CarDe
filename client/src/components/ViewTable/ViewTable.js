@@ -12,7 +12,7 @@ const DetailTable= (props)=>{
                 <div className="table-title">
                     <Row>
                         <Col className="col-sm-6">
-                            <h2><b>Images Processed</b></h2>
+                            <h2><b>Estimated Parts</b></h2>
                         </Col>
                         
                     </Row>

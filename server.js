@@ -121,7 +121,8 @@ app.post('/api/create',withAuth,upload.single('selectedImage'),function(req,res)
     let {claim_reference_no,vin_number,make,year,image_name,image_type,date_uploaded,damaged_parts,severity_of_damage,accuracy} = req.body;
   
     const imagePath = slash(req.file.path);
-    console.log(claim_reference_no,vin_number,make,year,image_name,image_type,date_uploaded,damaged_parts,severity_of_damage,accuracy,imagePath)
+    console.log(claim_reference_no,vin_number,make,year,image_name,image_type,date_uploaded,damaged_parts,severity_of_damage,accuracy,imagePath);
+    console.log(accuracy)
     const imgbytes = new Buffer(fs.readFileSync(req.file.path)).toString("base64");
     axios.post('http://52.173.191.180:4000/Upload', { imgname: image_name, imagbytes: imgbytes })
         .then(result => {
@@ -147,6 +148,7 @@ app.post('/api/create',withAuth,upload.single('selectedImage'),function(req,res)
                         }else{
                             console.log(date_uploaded)
                             let user = new User({claim_reference_no,vin_number,make,year,image_name,image_type,date_uploaded,damaged_parts,severity_of_damage,accuracy,imagePath});
+                            console.log(accuracy)
                             User.findOneAndUpdate(
                                 {adjustoremail:req.adjustoremail},
                                 {$push:{"images":{claim_reference_no,vin_number,make,year,image_name,image_type,date_uploaded,damaged_parts,severity_of_damage,accuracy,imagePath}}},
@@ -190,8 +192,8 @@ app.get('/api/profile',withAuth,function(req,res){
             .send("No User Found Try Again")
         }else{
         
-        
-          res.status(200).json({data:user})
+        console.log(user.images)
+          res.status(200).json({data:user.images})
            
         }
     })

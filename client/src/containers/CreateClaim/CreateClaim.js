@@ -90,7 +90,8 @@ class CreateClaim extends Component{
                     <Row>
                        
                         <Col className="col-md-12">
-                            <h2><b>Claim Reference Number:{this.state.message.claim_adjustor_id}</b></h2>
+                            <h2><b>Claim Adjustor:{this.state.message.claim_adjustor_id}</b><br/>Claim Reference Number:{this.state.message.claim_adjustor_id}</h2>
+                            
                         </Col>
                         <Col className="col-md-6">
                         <Form.Group controlId="claim_reference_no" >

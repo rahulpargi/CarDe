@@ -1,13 +1,16 @@
 import React from 'react';
-import {Table,Row,Col} from 'react-bootstrap'
+import {Table,Row,Col} from 'react-bootstrap';
+import ModalImage from 'react-modal-image'
 
 
 import './DetailTable.css'
 
 const DetailTable= (props)=>{
+    const showModal = useState(false);
     return(
         <div className="container">
-          
+          <Row>
+              <Col className="col-sm-6">
             <div className="table-wrapper">
                 <div className="table-title">
                     <Row>
@@ -19,7 +22,7 @@ const DetailTable= (props)=>{
 
                 </div>
                 <Table className="table table-striped table-hover">
-        
+                
                 <thead>
                     <tr>
                     
@@ -78,7 +81,18 @@ const DetailTable= (props)=>{
                 </tbody>
                 </Table>
             </div>
+            </Col>
+            <Col className="col-sm-6">
+            <ModalImage
+                    small={`../../`+props.imagePath}
+                    large={`../../`+props.imagePath}
+                    alt="Hello World!"
+                />
         
+            </Col>
+            </Row>
+
+           
             </div>
     );
 }
