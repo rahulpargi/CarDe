@@ -1,5 +1,6 @@
 import React from 'react';
-import {Table,Row,Col} from 'react-bootstrap'
+import {Table,Row,Col} from 'react-bootstrap';
+
 
 
 import './ViewTable.css'

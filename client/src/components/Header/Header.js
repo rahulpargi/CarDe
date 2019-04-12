@@ -28,11 +28,11 @@ const Header=()=>{
                                 
                                 <LinkContainer to="/view">
                                     <NavItem className="nav-link" >Dashboard</NavItem>
-                                    {/* <Nav.Link className="nav-link" >Dashboard</Nav.Link>  */}
+                                    
                                 </LinkContainer>
                                 <LinkContainer to="/logout">
                                     <NavItem  className="nav-link" >Logout</NavItem>
-                                    {/* <Nav.Link className="nav-link" >Log Out</Nav.Link>  */}
+                                   
                                 </LinkContainer>
                         </Nav>
                         

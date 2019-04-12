@@ -13,7 +13,8 @@ import Layout from '../../hoc/Layout/Layout';
 class Profile extends Component{
     state={
         message:'Loading',
-        data:[]
+        data:[],
+        claimadjustor:''
         
     }
     componentDidMount(){
@@ -22,7 +23,7 @@ class Profile extends Component{
         .then(res =>
             {
                 console.log(res.data.data);
-                this.setState({data:res.data.data})
+                this.setState({data:res.data.data,claimadjustor:res.data.claimadjustor})
             }
             );
     }
@@ -35,10 +36,10 @@ class Profile extends Component{
                 
                 <Row>
                     
-                    <Col><Cards/></Col>
+                    <Col><Cards info={this.state.data}/></Col>
                   
                     
-                    <Col> <DataTable data={this.state.data}/></Col>
+                    <Col> <DataTable data={this.state.data} claimadjustor={this.state.claimadjustor}/></Col>
                 </Row> 
                 
 

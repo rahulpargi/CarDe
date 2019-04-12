@@ -10,8 +10,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 const DataTable= (props)=>{
     return(
+      
         <div className="container">
             <Search/>
+            
             <div className="table-wrapper">
                 <div className="table-title">
                 {props.data.map(e=>console.log(e._id))}
@@ -19,7 +21,7 @@ const DataTable= (props)=>{
                         <Col className="col-sm-6">
                             <h2><b>Claim Reference Table</b></h2>
                         </Col>
-                        <LinkContainer to='/create'>
+                        <LinkContainer to={'/create'}>
                         <Col className="col-sm-6">
                             <Button className="btn btn-success"><FontAwesomeIcon icon="plus" /> New Claim</Button>
                         </Col>

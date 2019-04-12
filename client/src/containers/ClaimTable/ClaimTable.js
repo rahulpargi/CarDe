@@ -4,6 +4,7 @@ import Axios from 'axios';
 import Loader from '../../components/Spinner/Loader';
 import uniqid from 'uniqid'
 
+
 class ClaimTable extends React.Component {
   constructor(props) {
     super(props);
@@ -162,14 +163,14 @@ class ClaimTable extends React.Component {
 
         </Col>
         <Col className="col-md-6">
-            <ProgressBar animated now={this.state.progress}/>
+            
             <Row>
                 <Col className="col-sm-6">
                     <div className="thumb-wrapper">
                         <div className="thumb-content">
                             <h4><b>Severity</b></h4>
-                              {this.state.showSpinner && loader}
-                            <h5>{this.state.predictionResult.assessment}</h5>
+                              
+                            <h5>{this.props.severity}</h5>
                             
                         </div>
                     </div>
@@ -179,7 +180,7 @@ class ClaimTable extends React.Component {
                         <div className="thumb-content">
                             <h4><b>Damaged Parts</b></h4>
                             {this.state.showSpinner && loader}
-                            <h5>{this.state.predictionResult.damage_affected_parts}</h5>
+                            <h5>{this.props.damage}</h5>
                             
                         </div>
                     </div>
@@ -189,7 +190,7 @@ class ClaimTable extends React.Component {
                         <div className="thumb-content">
                             <h4><b>Accuracy</b></h4>
                             {this.state.showSpinner && loader}
-                            <h5>{this.state.predictionResult.damage_affected_parts}</h5>
+                            <h5>{this.props.accuracy}</h5>
                             
                         </div>
                     </div>

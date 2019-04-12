@@ -157,7 +157,7 @@ app.post('/api/create',withAuth,upload.single('selectedImage'),function(req,res)
                                     if(err){
                                         console.log(err);
                                         res.status(500)
-                                        .send("Error Registering new Adjustor please try again");
+                                        .send("Error ");
                                     }else{
                                         console.log('saved');
                                         console.log(model)
@@ -192,14 +192,21 @@ app.get('/api/profile',withAuth,function(req,res){
             .send("No User Found Try Again")
         }else{
         
-        console.log(user.images)
-          res.status(200).json({data:user.images})
+        console.log(user.adjustor_username)
+          res.status(200).json({data:user.images,claimadjustor:user.adjustor_username})
            
         }
     })
   
   
 });
+
+//Search
+
+app.get('/api/search/:query',withAuth,function(req,res){
+    const email = req.adjustoremail;
+    
+})
 app.get('/api/view',withAuth,function(req,res){
    
     res.status(200).send("Success");
@@ -214,7 +221,7 @@ app.get('/api/create',withAuth,function(req,res){
         }else{
         
          // res.json(user);
-          res.status(200).send(user)
+          res.status(200).send({user1:user.adjustor_username})
            
         }
        

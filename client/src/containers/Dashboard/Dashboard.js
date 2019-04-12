@@ -28,7 +28,11 @@ class Dashboard extends Component{
         return(
            <Layout>
                <Container fluid>
-              
+                    <Col className="col-md-12">
+                    
+                        <h2><b>Claim Adjustor:{this.state.message.claim_adjustor_id}</b><br/>Claim Reference Number:{this.state.data1.claim_reference_no}</h2>
+                                    
+                    </Col>
                     <Row>
                         <Col className="col-md-3 space">
                             <Chart accuracy={this.state.data1.accuracy}/>
@@ -55,7 +59,7 @@ class Dashboard extends Component{
                                 autoFocus
                                 
                                 disabled="disabled"
-                                value={this.state.data1.length}
+                                value="1"
                                 type="text" 
                                 placeholder="" />
                         

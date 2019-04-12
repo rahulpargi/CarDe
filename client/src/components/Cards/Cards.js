@@ -14,7 +14,7 @@ const Cards = (props) =>{
                     <div className="thumb-wrapper">
                         <div className="thumb-content">
                             <h4><b>Total Claim Processed</b></h4>
-                            <h5>200.00</h5>
+                            <h5>{props.info.length}</h5>
                         </div>
                     </div>
                 </Col>

@@ -2,10 +2,11 @@ import React,{Component} from 'react';
 import Layout from '../../hoc/Layout/Layout';
 import {Row,Col,Container,Form,Image,Button} from 'react-bootstrap';
 import ClaimTable from '../ClaimTable/ClaimTable'
-import Front from '../../assets/Front.jpg';
-import Loader from '../../components/Spinner/Loader';
+
+
 import './Button.css'
 import Axios from 'axios';
+import LoadingOverlay from 'react-loading-overlay';
 
 
 
@@ -24,17 +25,20 @@ class CreateClaim extends Component{
         damaged_parts:'',
         severity_of_damage:'',
         accuracy:'89',
-        spinner:false
+        isActive:false,
+        disabled:false,
+        claimadjustor:''
     }
     
     componentDidMount(){
         Axios.get('/api/create')
         .then(res=>{
-            // this.setState({message:res.data});
-            // console.log(res.data)
+            this.setState({claimadjustor:res.data.user1})
+            
             
             
         })
+        
     }
     
     handleChange = (e)=>{
@@ -52,7 +56,7 @@ class CreateClaim extends Component{
         })
     }
     handleSubmit=(event)=>{
-        this.setState({spinner:true})
+        this.setState({isActive:!this.state.isActive})
         const { selectedImage,image_name,image_type,date_uploaded,claim_reference_no,vin_number,make,damaged_parts,severity_of_damage,accuracy,year} = this.state;
         event.preventDefault();
         let formData = new FormData();
@@ -69,7 +73,12 @@ class CreateClaim extends Component{
         formData.append('year',year);
         Axios.post('/api/create',formData)
         .then(res=>{
-
+            this.setState({
+                damaged_parts:res.data.damaged_parts,
+                severity_of_damage:res.data.severity_of_damage,
+                accuracy:res.data.accuracy
+            });
+            this.setState({isActive:!this.state.isActive,disabled:!this.state.disabled})
             console.log(res)
         })
         .catch(function(err){
@@ -80,17 +89,25 @@ class CreateClaim extends Component{
 
     }   
     render(){
-        let loader = <Loader/>
+     
+
         
         return(
-            
+            <LoadingOverlay
+                active={this.state.isActive}
+                spinner
+                text='Hang Tight it takes time to fetch data from api '
+            >      
             <Layout>
+                 
                 <Container >
+                
+
                 <Form onSubmit={this.handleSubmit} method="POST"  >
                     <Row>
                        
                         <Col className="col-md-12">
-                            <h2><b>Claim Adjustor:{this.state.message.claim_adjustor_id}</b><br/>Claim Reference Number:{this.state.message.claim_adjustor_id}</h2>
+                            <h2><b>Claim Adjustor:{this.state.claimadjustor}</b></h2>
                             
                         </Col>
                         <Col className="col-md-6">
@@ -101,6 +118,7 @@ class CreateClaim extends Component{
                                 autoFocus
                                 onChange={this.handleChange}
                                 type="text" 
+                                disabled={this.state.disabled}
                                 placeholder="Enter Reference Number" />
                         
                         </Form.Group>
@@ -111,7 +129,6 @@ class CreateClaim extends Component{
                                 autoFocus
                                 onChange={this.handleChange}
                                 disabled
-                                //value={this.state.images.length}
                                 type="text" 
                                 placeholder="5" />
                              
@@ -129,18 +146,7 @@ class CreateClaim extends Component{
                              
                         
                         </Form.Group>
-                        <Form.Group controlId="analysis_Status" >
-                            <Form.Label>Analysis Status</Form.Label>
-                            <Form.Control 
-                                required
-                                autoFocus
-                                onChange={this.handleChange}
-                                disabled
-                                type="text" 
-                                placeholder="Not Started" />
-                             
                         
-                        </Form.Group>
                         </Col>
                         <Col className="col-md-6">
                             <Form.Group controlId="make" >
@@ -150,7 +156,7 @@ class CreateClaim extends Component{
                                     autoFocus
                                     onChange={this.handleChange}
                                     
-                                
+                                    disabled={this.state.disabled}
                                     type="text" 
                                     placeholder="Enter Make" />
                                 
@@ -163,7 +169,7 @@ class CreateClaim extends Component{
                                     autoFocus
                                     onChange={this.handleChange}
                                     
-                                
+                                    disabled={this.state.disabled}
                                     type="text" 
                                     placeholder="Enter Car Year" />
                                 
@@ -176,7 +182,7 @@ class CreateClaim extends Component{
                                     autoFocus
                                     onChange={this.handleChange}
                                     
-                                
+                                    disabled={this.state.disabled}
                                     type="text" 
                                     placeholder="Enter VIN Number" />
                                 
@@ -184,7 +190,7 @@ class CreateClaim extends Component{
                             </Form.Group>
                             <Form.Group controlId="formBasicChecbox">
                                 <Button
-                                    
+                                    disabled={this.state.disabled}
                                     className="btn"
                                     variant="primary"
                                     type="submit"
@@ -194,20 +200,22 @@ class CreateClaim extends Component{
                                 Run Analysis
                                 
                                 </Button>
+                            
                             </Form.Group>
                         </Col>
                     </Row>
                     <Row>
                         <Col >
-                            <ClaimTable handleImage={this.handleImages} />
+                            <ClaimTable handleImage={this.handleImages} severity={this.state.severity_of_damage} damage={this.state.damaged_parts} accuracy={this.state.accuracy}/>
                         </Col>
-                        
                         
                     </Row>
                 </Form>
-                </Container>
                 
+                </Container>
+               
             </Layout>
+            </LoadingOverlay>
         )
     }
 } 
