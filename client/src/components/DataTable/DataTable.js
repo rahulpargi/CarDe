@@ -47,7 +47,7 @@ const DataTable = props => {
                   <td>
                   <Link
                       to={{
-                        pathname: `/profile/claim/${e._id}`,
+                        pathname: `/profile/claim/edit/${e._id}`,
                         state: {
                           data: e
                         }

@@ -23,10 +23,10 @@ const Header = () => {
               <NavItem className="nav-link" > Home</NavItem>
             </LinkContainer>
 
-            <LinkContainer to="/view">
+            {/* <LinkContainer to="/view">
               <NavItem className="nav-link">Dashboard</NavItem>
-            </LinkContainer>
-            <LinkContainer to="/logout">
+            </LinkContainer> */}
+            <LinkContainer to="/">
               <NavItem className="nav-link">Logout</NavItem>
             </LinkContainer>
           </Nav>

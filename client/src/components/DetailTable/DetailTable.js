@@ -17,6 +17,7 @@ class DetailTable extends React.Component{
                 alt="Hello World!"
             />
         );
+        console.log(this.props);
         return(
             <div className="container">
               <Row>

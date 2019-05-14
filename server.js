@@ -208,8 +208,21 @@ app.get('/api/search/:query',withAuth,function(req,res){
     
 })
 app.get('/api/view',withAuth,function(req,res){
+     const email = req.adjustoremail;
+    User.findOne({"adjustoremail" : req.adjustoremail},function(err,user){
+        if(err) throw err;
+        else if(!user){
+            res.status(500)
+            .send("No User Found Try Again")
+        }else{
+        
+         // res.json(user);
+          res.status(200).send({user1:user.adjustor_username})
+           
+        }
+       
+    })
    
-    res.status(200).send("Success");
 });
 app.get('/api/create',withAuth,function(req,res){
     
@@ -229,6 +242,22 @@ app.get('/api/create',withAuth,function(req,res){
     
     
 });
+
+//edit claims
+
+app.post('/api/edit/:id',function(req,res){
+    const email = req.adjustoremail;
+
+    User.findById(req.params.id,function(err,data){
+        if(err) throw err;
+        else if(!data){
+            res.status(500)
+            .send("No claims found please  try again");
+        }else{
+            console.log(req.params.id);
+        }
+    })
+})
 //error handler
 app.use((err,req,res,next)=>{
     //set locals, proving error only in development

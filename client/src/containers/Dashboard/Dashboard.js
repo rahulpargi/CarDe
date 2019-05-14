@@ -7,37 +7,63 @@ import Chart from '../../components/Chart';
 import './Dashboard.css'
 import DetailTable from '../../components/DetailTable/DetailTable';
 import Layout from '../../hoc/Layout/Layout';
+import Chart_Parts from '../../components/Chart_Parts';
+import axios from 'axios';
 
 
 
 class Dashboard extends Component{
     state={
         message:'Loading',
-        data1:[]
+        data1:[],
+        claim_adjustor:''
     }
     componentDidMount(){
         
         this.setState({data1:this.props.location.state.data});
         
-        fetch('/api/view')
-        .then(res => res.text())
-        .then(res => this.setState({message: res}));
+        axios.get('/api/view')
+        .then(res=>this.setState({claim_adjustor:res.data.claim_adjustor}))
+        // fetch('/api/view')
+        
+        // .then(res => res.text())
+        
+        // .then(res => this.setState({message: res}));
     }
+    
     render(){
-       
+        const style = {
+            color: "#000",
+            fontSize: "26px",
+            fontWeight: "300",
+            textTransform: "uppercase",
+            position: "relative"
+          };
+          
         return(
            <Layout>
                <Container fluid>
                     <Col className="col-md-12">
-                    
-                        <h2><b>Claim Adjustor:{this.state.message.claim_adjustor_id}</b><br/>Claim Reference Number:{this.state.data1.claim_reference_no}</h2>
+                   
+                        <h2>Claim Reference Number:{this.state.data1.claim_reference_no}</h2>
                                     
                     </Col>
+                    <Row style={{ marginTop: "50px" }}>
+                        <Col>
+                        <h3 style={style}>
+                            <b>Summary</b>
+                        </h3>
+                        <hr style={{ borderTop: " 1px solid black" }} />
+                        </Col>
+                    </Row>
                     <Row>
-                        <Col className="col-md-3 space">
+                        <Col className="col-md-4 space">
                             <Chart accuracy={this.state.data1.accuracy}/>
                         </Col>
-                        <Col className="col-md-3 space ">
+                        <Col className="col-md-4 space">
+                            <Chart_Parts/>
+                        </Col>
+                        <Col className="col-md-4 space ">
                        
                         <Form.Group controlId="total_parts" >
                             <Form.Label>Total Number Of Parts Scanned</Form.Label>
@@ -101,15 +127,18 @@ class Dashboard extends Component{
                         
                         </Form.Group>
                         </Col>
-                        <Col className="col-md-6">
-                            <ViewTable/>
-                        </Col>
+                        
                        
                     </Row>
+                    
+                    
                   
                     <Row>
-                        <Col >
-                            <DetailTable imagePath={this.state.data1.imagePath}/>
+                        <Col className="col-md-6">
+                            <ViewTable/> 
+                        </Col>
+                        <Col className="col-md-6">
+                            <Image src={`../../`+this.state.data1.imagePath}/>
                         </Col>
                        
                        
