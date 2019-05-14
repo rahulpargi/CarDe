@@ -6,7 +6,7 @@ body{
     padding: 0 !important;
 }	
 .navbar {		
-    background: #fff;
+    background: #283fb1;
     padding-left: 16px;
     padding-right: 16px;
     border-bottom: 1px solid #d6d6d6;
@@ -36,38 +36,35 @@ body{
     margin-right: 5px;
 }
 
-.navbar .nav-item i {
+.navbar .nav-item  {
     font-size: 18px;
+    color:white;
 }
+.navbar-light .navbar-nav .nav-link {
+    color:white;
+}
+.navbar-light .navbar-nav .nav-link:hover {
+    cursor: pointer;
+    background:linen;
+    font-weight: bold;
+    font-style: italic;
+}
+.navbar-light .navbar-nav .nav-link.active {
+color:white;
+}
+
 
 .navbar .nav-item.open > a {
     background: none !important;
 }
 
-.navbar .badge {
-    background: #f44336;
-    font-size: 11px;
-    border-radius: 20px;
-    position: absolute;
-    min-width: 10px;
-    padding: 4px 6px 0;
-    min-height: 18px;
-    top: 5px;
-}
-.navbar ul.nav li a.notifications, .navbar ul.nav li a.messages {
-    position: relative;
-    margin-right: 10px;
-}
-.navbar ul.nav li a.messages {
-    margin-right: 20px;
-}
-.navbar a.notifications .badge {
-    margin-left: -8px;
-}
-.navbar a.messages .badge {
-    margin-left: -4px;
+
+
+.nav .nav-item{
+    color:white;
 }	
 .navbar .active a, .navbar .active a:hover, .navbar .active a:focus {
+   
     background: transparent !important;
 }
 @media (min-width: 1200px){

@@ -7,9 +7,7 @@ const Cards = (props) =>{
     return(
         <Container fluid>
             <Row >
-                <Col className="col-md-12">
-                    <h2><b>Summary of Images Processed</b></h2>
-                </Col>
+                
                 <Col className="col-md-6">
                     <div className="thumb-wrapper">
                         <div className="thumb-content">

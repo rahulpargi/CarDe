@@ -11,9 +11,9 @@ import Error404 from './components/Error404'
 import { library } from '@fortawesome/fontawesome-svg-core';
 
 
-import { faPlus,faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faPlus,faSearch,faEdit } from '@fortawesome/free-solid-svg-icons'
 
-library.add(faPlus,faSearch)
+library.add(faPlus,faSearch,faEdit)
 
 class App extends Component {
  

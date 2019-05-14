@@ -17,7 +17,7 @@ const Search =(props)=>{
         .then(res=> console.log(res))
     }
    return(
-  <Row className="row justify-content-end">
+  <Row className="row justify-content-start">
         <Col className="col-12 col-md-10 col-lg-8">
             <Form className="card card-sm" onSubmit={handleSearch}>
                 <Card.Body className="card-body row no-gutters align-items-center">

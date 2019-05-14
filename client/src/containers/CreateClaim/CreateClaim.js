@@ -96,7 +96,7 @@ class CreateClaim extends Component{
             <LoadingOverlay
                 active={this.state.isActive}
                 spinner
-                text='Hang Tight it takes time to fetch data from api '
+                text='Please Wait  We Are Analyzing Your Request'
             >      
             <Layout>
                  
