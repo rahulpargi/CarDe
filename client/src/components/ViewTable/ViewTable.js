@@ -10,19 +10,11 @@ const DetailTable= (props)=>{
         <div className="container">
           
             <div className="table-wrapper">
-                <div className="table-title">
-                    <Row>
-                        <Col className="col-sm-6">
-                            <h2><b>Estimated Parts</b></h2>
-                        </Col>
-                        
-                    </Row>
-
-                </div>
+                
                 <Table className="table table-striped table-hover">
         
-                <thead>
-                    <tr>
+                <thead style={{background:"#283fb1"}}>
+                    <tr style={{color:"white"}}>
                     
                     <th>ITEM</th>
                     <th>COUNT</th>
@@ -34,70 +26,36 @@ const DetailTable= (props)=>{
                 </thead>
                 <tbody>
                     <tr>
-                    <td>Front</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
+                    <td>Bonet</td>
+                    <td>01</td>
+                    <td>60%</td>
+                    <td>20%</td>
+                    <td>12%</td>
                     
                    
                  
                     
                     </tr>
                     <tr>
-                    <td>Back</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
+                    <td>WindShield</td>
+                    <td>01</td>
+                    <td>70%</td>
+                    <td>90%</td>
+                    <td>60%</td>
                     
                     
                     </tr>
                     <tr>
-                    <td>Right Side</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
+                    <td>Trunk</td>
+                    <td>01</td>
+                    <td>80%</td>
+                    <td>20%</td>
+                    <td>70%</td>
                     
                    
                     </tr>
-                    <tr>
-                    <td>Left Side</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                   
-                   
-                    </tr>
-                    <tr>
-                    <td>Front Wheel - Right</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                   
                     
-                    </tr>
-                    <tr>
-                    <td>Front Wheel - Left</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    
-                    
-                    </tr>
-                    <tr>
-                    <td>Back Wheel - Right</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
-                    <td>9.00</td>
                    
-                    
-                    </tr>
                     
                 </tbody>
                 </Table>

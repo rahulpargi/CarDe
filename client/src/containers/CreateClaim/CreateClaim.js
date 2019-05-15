@@ -96,18 +96,18 @@ class CreateClaim extends Component {
   render() {
     const style = {
         color: "#000",
-        fontSize: "26px",
+        fontSize: "22px",
         fontWeight: "300",
-        textTransform: "uppercase",
+        textTransform: "capitalize",
         position: "relative"
       };
 
       let image = (
                     <div >
-                        <Image src={this.state.image} style={{width:"350", height:"250px"}}/>
+                        <Image src={this.state.image} style={{width:"300", height:"200px"}}/>
                     
-                        <h5>Image Name: {this.state.image_name}</h5>
-                        <h5>Date Uploaded: {this.state.date_uploaded}</h5>
+                        <h5 style={{fontSize:"17px",textAlign:"center"}}>Image Name: {this.state.image_name}</h5>
+                        
                     </div>
       );
     return (
@@ -120,14 +120,7 @@ class CreateClaim extends Component {
           <Container>
             <Form onSubmit={this.handleSubmit} method="POST">
               <Row>
-                <Col className="col-md-12" style={{textAlign:'center',marginTop:"10px"}}>
-                  <h2>
-                    <b>
-                      Claim Adjustor:{" "}
-                      {this.state.claimadjustor.toUpperCase()}
-                    </b>
-                  </h2>
-                </Col>
+               
                 {/* <Col className="col-md-6">
                   <Form.Group controlId="claim_reference_no">
                     <Form.Label>Claims Reference No</Form.Label>
@@ -232,19 +225,6 @@ class CreateClaim extends Component {
                   </Form.Group>
                 </Col>
                 <Col className="col-md-3">
-                  <Form.Group controlId="make">
-                    <Form.Label>Make</Form.Label>
-                    <Form.Control
-                      required
-                      
-                      onChange={this.handleChange}
-                      disabled={this.state.disabled}
-                      type="text"
-                      placeholder="Enter Make"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col className="col-md-3">
                   <Form.Group controlId="year">
                     <Form.Label>Year</Form.Label>
                     <Form.Control
@@ -257,6 +237,20 @@ class CreateClaim extends Component {
                     />
                   </Form.Group>
                 </Col>
+                <Col className="col-md-3">
+                  <Form.Group controlId="make">
+                    <Form.Label>Make</Form.Label>
+                    <Form.Control
+                      required
+                      
+                      onChange={this.handleChange}
+                      disabled={this.state.disabled}
+                      type="text"
+                      placeholder="Enter Make"
+                    />
+                  </Form.Group>
+                </Col>
+                
                 <Col className="col-md-3">
                   <Form.Group controlId="vin_number">
                     <Form.Label>VIN Number</Form.Label>
@@ -285,8 +279,8 @@ class CreateClaim extends Component {
                   <hr style={{ borderTop: " 1px solid black" }} />
                 </Col>
               </Row>
-              <Row  style={{textAlign:'center'}}>
-                <Col className="col-md-6">
+              <Row  style={{textAlign:'center'}} >
+                <Col className="col-md-6" style={{margin:"auto"}}>
                   <ClaimTable
                     handleImage={this.handleImages}
                     severity={this.state.severity_of_damage}
@@ -305,8 +299,8 @@ class CreateClaim extends Component {
                   </Form.Group>
                 </Col>
 
-                <Col className="col-md-6" style={{textAlign:'center'}}>
-                   {(this.state.image && image || <h5>Please Upload an Image to Start Analyzing</h5>)  }
+                <Col className="col-md-6" style={{textAlign:'center',height:"200px"}}>
+                   {(this.state.image && image || <h5 >Please Upload an Image to Start Analyzing</h5>)  }
                  
                   
                  

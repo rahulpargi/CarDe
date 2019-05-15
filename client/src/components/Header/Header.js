@@ -4,7 +4,7 @@ import { LinkContainer } from "react-router-bootstrap";
 import Logo from "../../assets/Logo.PNG";
 import "./Header.css";
 
-const Header = () => {
+const Header = (props) => {
   return (
     <div>
       <Navbar className="navbar navbar-default navbar-expand-xl navbar-light">
@@ -17,8 +17,15 @@ const Header = () => {
           </LinkContainer>
          
         </div>
-        <div className="collapse navbar-collapse justify-content-start">
+       
+       
+       
+        <div className="collapse navbar-collapse justify-content-end">
+      
+        <NavItem className="ml-auto mr-1">Claim Adjustor: <span style={{textTransform:'capitalize'}}>{props.user}</span></NavItem>
+        
           <Nav className="nav navbar-nav navbar-right ml-auto" >
+         
             <LinkContainer to="/profile">
               <NavItem className="nav-link" > Home</NavItem>
             </LinkContainer>

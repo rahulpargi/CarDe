@@ -29,14 +29,14 @@ class Profile extends Component {
   render() {
     const style = {
       color: "#000",
-      fontSize: "26px",
+      fontSize: "22px",
       fontWeight: "300",
-      textTransform: "uppercase",
+      textTransform: "capitalize",
       position: "relative"
     };
     return (
       <Layout>
-        <Container>
+        <Container f >
           <Row>
             <Col className="col-md-6" style={{ marginTop: "25px" }}>
               <Search />
@@ -45,14 +45,15 @@ class Profile extends Component {
               <LinkContainer to={"/create"}>
                 <Col className="row justify-content-end">
                   <Button className="btn btn-success">
-                    <FontAwesomeIcon icon="plus" /> New Claim
+                    
+                    Add New Claim
                   </Button>
                 </Col>
               </LinkContainer>
             </Col>
           </Row>
 
-          <Row style={{ marginTop: "50px" }}>
+          <Row style={{ marginTop: "20px" }}>
             <Col>
               <h3 style={style}>
                 <b>Summary</b>
@@ -66,10 +67,10 @@ class Profile extends Component {
             </Col>
           </Row>
 
-          <Row style={{ marginTop: "50px" }}>
+          <Row style={{ marginTop: "20px" }}>
             <Col>
               <h3 style={style}>
-                <b>Claim's Reference</b>
+                <b>Claim's</b>
               </h3>
               <hr style={{ borderTop: " 1px solid black" }} />
             </Col>

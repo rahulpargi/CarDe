@@ -7,6 +7,7 @@ import "./DataTable.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const DataTable = props => {
+  console.log(props);
   return (
    
       <div className="table-wrapper">
@@ -21,6 +22,10 @@ const DataTable = props => {
               <th>Reference Number</th>
               <th>Image Count</th>
               <th>Damage Density</th>
+              <th>Year</th>
+              <th>Make</th>
+              <th>Model</th>
+              <th>Date of Loss</th>
               <th></th>
             </tr>
           </thead>
@@ -42,8 +47,13 @@ const DataTable = props => {
                       {e.claim_reference_no}
                     </Link>
                   </td>
-                  <td>1</td>
+                  <td >1</td>
                   <td>60%</td>
+                  <td>{e.year}</td>
+                  <td style={{textTransform:'capitalize'}}>{e.make}</td>
+                  <td>Tesla</td>
+                  <td>{e.date_uploaded}</td>
+
                   <td>
                   <Link
                       to={{

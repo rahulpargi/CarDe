@@ -17,16 +17,13 @@ const Search =(props)=>{
         .then(res=> console.log(res))
     }
    return(
-  <Row className="row justify-content-start">
-        <Col className="col-12 col-md-10 col-lg-8">
+  <Row className="row justify-content-start ">
+        {/* <Col className="col-12 col-md-10 col-lg-8">
             <Form className="card card-sm" onSubmit={handleSearch}>
                 <Card.Body className="card-body row no-gutters align-items-center">
-                    <Col className="col-auto">
-                        <FontAwesomeIcon icon="search" text-body/>
-                    </Col>
-                
+                   
                     <Col className="col">
-                        <input className="form-control form-control-lg form-control-borderless" type="search" placeholder="Enter Reference Number" onChange={handleInput}/>
+                        <input className="form-control form-control-lg " type="text" placeholder="Search By Reference Number" onChange={handleInput}/>
                     </Col>
                 
                     <Col className="col-auto">
@@ -35,8 +32,15 @@ const Search =(props)=>{
                 </Card.Body>
             </Form>
        
-        </Col>  
-
+        </Col>   */}
+        <Col className="col-md-8">
+       <div class="input-group">
+            <input type="text" className="form-control" placeholder="Search Reference Number"/>
+            <span class="input-group-btn">
+                <button className="btn btn-search" type="button"><i class="fa fa-search fa-fw"></i> Search</button>
+            </span>
+            </div>
+        </Col>
 </Row>
 
 
