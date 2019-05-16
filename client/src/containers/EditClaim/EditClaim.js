@@ -7,7 +7,7 @@ import '../../components/Cards/Cards.css'
 import Axios from "axios";
 import LoadingOverlay from "react-loading-overlay";
 
-class CreateClaim extends Component {
+class EditClaim extends Component {
   state = {
     message: {},
     claim_reference_no: "",
@@ -24,13 +24,25 @@ class CreateClaim extends Component {
     isActive: false,
     // disabled: false,
     claimadjustor: "",
-    image:null
+    image:null,
+    imagePath:""
   };
 
   componentDidMount() {
-    Axios.get("/api/create").then(res => {
-      this.setState({ claimadjustor: res.data.user1 });
+    Axios.get(`/api/claim/edit/${this.props.match.params.id}`).then(res => {
+
+        this.setState({
+            claim_reference_no:res.data.user.images[0].claim_reference_no,
+            year: res.data.user.images[0].year,
+            make:res.data.user.images[0].make,
+            vin_number: res.data.user.images[0].vin_number,
+            damaged_parts: res.data.user.images[0].damaged_parts,
+            severity_of_damage: res.data.user.images[0].severity_of_damage,
+            imagePath:this.state.imagePath
+        })
+      console.log(res.data.user.images[0]);
     });
+    console.log(this.props.match.params.id);
   }
 
   handleChange = e => {
@@ -49,7 +61,7 @@ class CreateClaim extends Component {
     });
   };
   handleSubmit = event => {
-    this.setState({ isActive: !this.state.isActive });
+     this.setState({ isActive: !this.state.isActive });
     const {
       selectedImage,
       image_name,
@@ -76,7 +88,7 @@ class CreateClaim extends Component {
     formData.append("severity_of_damage", severity_of_damage);
     formData.append("accuracy", accuracy);
     formData.append("year", year);
-    Axios.post("/api/create", formData)
+    Axios.post(`/api/claim/edit/${this.props.match.params.id}`,formData)
       .then(res => {
         this.setState({
           damaged_parts: res.data.damaged_parts,
@@ -84,7 +96,7 @@ class CreateClaim extends Component {
           accuracy: res.data.accuracy
         });
         this.setState({
-          isActive: !this.state.isActive,
+         isActive: !this.state.isActive,
           // disabled: !this.state.disabled
         });
         console.log(res);
@@ -119,93 +131,11 @@ class CreateClaim extends Component {
         <Layout>
           <Container>
             <Form onSubmit={this.handleSubmit} method="POST">
-              <Row>
-               
-                {/* <Col className="col-md-6">
-                  <Form.Group controlId="claim_reference_no">
-                    <Form.Label>Claims Reference No</Form.Label>
-                    <Form.Control
-                      required
-                      autoFocus
-                      onChange={this.handleChange}
-                      type="text"
-                      disabled={this.state.disabled}
-                      placeholder="Enter Reference Number"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="images_uploaded">
-                    <Form.Label>Images Uploaded</Form.Label>
-                    <Form.Control
-                      required
-                      autoFocus
-                      onChange={this.handleChange}
-                      disabled
-                      type="text"
-                      placeholder="5"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="images_missing">
-                    <Form.Label>Images Missing</Form.Label>
-                    <Form.Control
-                      required
-                      autoFocus
-                      onChange={this.handleChange}
-                      disabled
-                      type="text"
-                      placeholder="4.00"
-                    />
-                  </Form.Group>
-                </Col>
-                <Col className="col-md-6">
-                  <Form.Group controlId="make">
-                    <Form.Label>Make</Form.Label>
-                    <Form.Control
-                      required
-                      autoFocus
-                      onChange={this.handleChange}
-                      disabled={this.state.disabled}
-                      type="text"
-                      placeholder="Enter Make"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="year">
-                    <Form.Label>Year</Form.Label>
-                    <Form.Control
-                      required
-                      autoFocus
-                      onChange={this.handleChange}
-                      disabled={this.state.disabled}
-                      type="text"
-                      placeholder="Enter Car Year"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="vin_number">
-                    <Form.Label>VIN Number</Form.Label>
-                    <Form.Control
-                      required
-                      autoFocus
-                      onChange={this.handleChange}
-                      disabled={this.state.disabled}
-                      type="text"
-                      placeholder="Enter VIN Number"
-                    />
-                  </Form.Group>
-                  <Form.Group controlId="formBasicChecbox">
-                    <Button
-                      disabled={this.state.disabled}
-                      className="btn"
-                      variant="primary"
-                      type="submit"
-                    >
-                      Run Analysis
-                    </Button>
-                  </Form.Group>
-                </Col> */}
-              </Row>
+              
               <Row style={{ marginTop: "50px" }} >
                 <Col>
                   <h3 style={style}>
-                    <b>Create Claims</b>
+                    <b>Edit Claims</b>
                   </h3>
                   <hr style={{ borderTop: " 1px solid black" }} />
                 </Col>
@@ -220,7 +150,7 @@ class CreateClaim extends Component {
                       onChange={this.handleChange}
                       type="text"
                       disabled={this.state.disabled}
-                      placeholder="Enter Reference Number"
+                      value={this.state.claim_reference_no}
                     />
                   </Form.Group>
                 </Col>
@@ -233,7 +163,7 @@ class CreateClaim extends Component {
                       onChange={this.handleChange}
                       disabled={this.state.disabled}
                       type="text"
-                      placeholder="Enter Car Year"
+                      value={this.state.year}
                     />
                   </Form.Group>
                 </Col>
@@ -246,7 +176,7 @@ class CreateClaim extends Component {
                       onChange={this.handleChange}
                       disabled={this.state.disabled}
                       type="text"
-                      placeholder="Enter Make"
+                      value={this.state.make}
                     />
                   </Form.Group>
                 </Col>
@@ -260,7 +190,7 @@ class CreateClaim extends Component {
                       onChange={this.handleChange}
                       disabled={this.state.disabled}
                       type="text"
-                      placeholder="Enter VIN Number"
+                      value={this.state.vin_number}
                     />
                   </Form.Group>
                 </Col>
@@ -268,7 +198,7 @@ class CreateClaim extends Component {
               <Row style={{ marginTop: "50px" }}>
                 <Col className="col-md-6">
                   <h3 style={style}>
-                    <b>Upload Image</b>
+                    <b>Edit Image</b>
                   </h3>
                   <hr style={{ borderTop: " 1px solid black" }} />
                 </Col>
@@ -340,4 +270,4 @@ class CreateClaim extends Component {
   }
 }
 
-export default CreateClaim;
+export default EditClaim;
