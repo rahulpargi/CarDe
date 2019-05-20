@@ -7,6 +7,7 @@ import '../../components/Cards/Cards.css'
 import Axios from "axios";
 import LoadingOverlay from "react-loading-overlay";
 
+
 class EditClaim extends Component {
   state = {
     message: {},
@@ -38,7 +39,8 @@ class EditClaim extends Component {
             vin_number: res.data.user.images[0].vin_number,
             damaged_parts: res.data.user.images[0].damaged_parts,
             severity_of_damage: res.data.user.images[0].severity_of_damage,
-            imagePath:this.state.imagePath
+            imagePath:res.data.user.images[0].imagePath,
+            image_name:res.data.user.images[0].image_name,
         })
       console.log(res.data.user.images[0]);
     });
@@ -88,8 +90,9 @@ class EditClaim extends Component {
     formData.append("severity_of_damage", severity_of_damage);
     formData.append("accuracy", accuracy);
     formData.append("year", year);
-    Axios.post(`/api/claim/edit/${this.props.match.params.id}`,formData)
+    Axios.put(`/api/claim/edit/${this.props.match.params.id}`,formData)
       .then(res => {
+        console.log(res);
         this.setState({
           damaged_parts: res.data.damaged_parts,
           severity_of_damage: res.data.severity_of_damage,
@@ -116,7 +119,7 @@ class EditClaim extends Component {
 
       let image = (
                     <div >
-                        <Image src={this.state.image} style={{width:"300", height:"200px"}}/>
+                        <Image src={"../../../../"+this.state.imagePath} style={{width:"300", height:"200px"}}/>
                     
                         <h5 style={{fontSize:"17px",textAlign:"center"}}>Image Name: {this.state.image_name}</h5>
                         
@@ -130,6 +133,7 @@ class EditClaim extends Component {
       >
         <Layout>
           <Container>
+           
             <Form onSubmit={this.handleSubmit} method="POST">
               
               <Row style={{ marginTop: "50px" }} >
@@ -224,14 +228,14 @@ class EditClaim extends Component {
                       variant="primary"
                       type="submit"
                     >
-                      Run Analysis
+                      Re-Run Analysis
                     </Button>
                   </Form.Group>
                 </Col>
 
                 <Col className="col-md-6" style={{textAlign:'center',height:"200px"}}>
-                   {(this.state.image && image || <h5 >Please Upload an Image to Start Analyzing</h5>)  }
-                 
+                   {/* {(this.state.image && image || <h5 >Please Upload an Image to Start Analyzing</h5>)  } */}
+                 {image}
                   
                  
                 </Col>

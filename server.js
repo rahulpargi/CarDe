@@ -270,75 +270,81 @@ app.get("/api/claim/edit/:id", withAuth, (req, res, next) => {
 });
 //post edit claims
 
-app.post(
+app.put(
   "/api/claim/edit/:id",
+ 
   withAuth,
   upload.single("selectedImage"),
   (req, res, next) => {
-    // let {
-    //   claim_reference_no,
-    //   vin_number,
-    //   make,
-    //   year,
-    //   image_name,
-    //   image_type,
-    //   date_uploaded,
-    //   damaged_parts,
-    //   severity_of_damage,
-    //   accuracy
-    // } = req.body;
+    let {
+      claim_reference_no,
+      vin_number,
+      make,
+      year,
+      image_name,
+      image_type,
+      date_uploaded,
+      damaged_parts,
+      severity_of_damage,
+      accuracy
+    } = req.body;
     const imagePath = slash(req.file.path);
     const imgbytes = new Buffer(fs.readFileSync(req.file.path)).toString(
       "base64"
     );
-
+      console.log(imagePath,imgbytes);
     axios
       .post("http://52.173.191.180:4000/Upload", {
         imgname: image_name,
         imagbytes: imgbytes
       })
       .then(result => {
+         console.log(result)
         if (result.status === 200) {
           damaged_parts = result.data.damage_affected_parts;
           severity_of_damage = result.data.assessment;
 
           
               
-              User.findByIdAndUpdate(
-                { adjustoremail: req.adjustoremail },
-                { images: { $elemMatch: { _id: req.params.id } } },
-                {
-                  $set: {
-                    "images.$.claim_reference_no": req.body.claim_reference_no,
-                    "images.$.vin_number": req.body.vin_number,
-                    "images.$.make": req.body.make,
-                    "images.$.year": req.body.year,
-                    "images.$.image_name": req.body.image_name,
-                    "images.$.image_type": req.body.image_type,
-                    "images.$.date_uploaded": req.body.date_uploaded,
-                    "images.$.damaged_parts": req.body.damaged_parts,
-                    "images.$.severity_of_damage": req.body.severity_of_damage,
-                    "images.$.accuracy": req.body.accuracy,
-                    "images.$.imagePath": req.body.imagePath
-                  }
-                },
-                function(err, model) {
-                  if (err) {
-                    console.log(err);
-                    res.status(500).send("Error ");
-                  } else {
-                    console.log("saved");
-                    console.log(model);
-                    res.status(200).json({
-                      damaged_parts: damaged_parts,
-                      severity_of_damage: severity_of_damage,
-                      accuracy: accuracy
-                    });
-                  }
-                }
-              );
+              // User.findByIdAndUpdate(
+              //   { adjustoremail: req.adjustoremail },
+              //   { images: { $elemMatch: { _id: req.params.id } } },
+              //   {
+              //     $set: {
+              //       "images.$.claim_reference_no": req.body.claim_reference_no,
+              //       "images.$.vin_number": req.body.vin_number,
+              //       "images.$.make": req.body.make,
+              //       "images.$.year": req.body.year,
+              //       "images.$.image_name": req.body.image_name,
+              //       "images.$.image_type": req.body.image_type,
+              //       "images.$.date_uploaded": req.body.date_uploaded,
+              //       "images.$.damaged_parts": req.body.damaged_parts,
+              //       "images.$.severity_of_damage": req.body.severity_of_damage,
+              //       "images.$.accuracy": req.body.accuracy,
+              //       "images.$.imagePath": req.body.imagePath
+              //     }
+              //   },
+              //   function(err, model) {
+              //     if (err) {
+              //      // console.log(err);
+              //       res.status(500).send("Error ");
+              //     } else {
+              //       console.log("saved");
+              //       console.log(model);
+              //       res.status(200).json({
+              //         damaged_parts: damaged_parts,
+              //         severity_of_damage: severity_of_damage,
+              //         accuracy: accuracy
+              //       });
+              //     }
+              //   }
+              // );
            
-          
+              res.status(200).json({
+                        damaged_parts: damaged_parts,
+                        severity_of_damage: severity_of_damage,
+                        accuracy: accuracy
+                      });
         } else {
           res
             .status(500)
