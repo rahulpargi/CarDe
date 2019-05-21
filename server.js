@@ -272,7 +272,7 @@ app.get("/api/claim/edit/:id", withAuth, (req, res, next) => {
 
 app.put(
   "/api/claim/edit/:id",
- 
+
   withAuth,
   upload.single("selectedImage"),
   (req, res, next) => {
@@ -292,81 +292,63 @@ app.put(
     const imgbytes = new Buffer(fs.readFileSync(req.file.path)).toString(
       "base64"
     );
-      console.log(imagePath,imgbytes);
     axios
-      .post("http://52.173.191.180:4000/Upload", {
-        imgname: image_name,
-        imagbytes: imgbytes
-      })
-      .then(result => {
-         console.log(result)
-        if (result.status === 200) {
-          damaged_parts = result.data.damage_affected_parts;
-          severity_of_damage = result.data.assessment;
-
-          
-              
-              // User.findByIdAndUpdate(
-              //   { adjustoremail: req.adjustoremail },
-              //   { images: { $elemMatch: { _id: req.params.id } } },
-              //   {
-              //     $set: {
-              //       "images.$.claim_reference_no": req.body.claim_reference_no,
-              //       "images.$.vin_number": req.body.vin_number,
-              //       "images.$.make": req.body.make,
-              //       "images.$.year": req.body.year,
-              //       "images.$.image_name": req.body.image_name,
-              //       "images.$.image_type": req.body.image_type,
-              //       "images.$.date_uploaded": req.body.date_uploaded,
-              //       "images.$.damaged_parts": req.body.damaged_parts,
-              //       "images.$.severity_of_damage": req.body.severity_of_damage,
-              //       "images.$.accuracy": req.body.accuracy,
-              //       "images.$.imagePath": req.body.imagePath
-              //     }
-              //   },
-              //   function(err, model) {
-              //     if (err) {
-              //      // console.log(err);
-              //       res.status(500).send("Error ");
-              //     } else {
-              //       console.log("saved");
-              //       console.log(model);
-              //       res.status(200).json({
-              //         damaged_parts: damaged_parts,
-              //         severity_of_damage: severity_of_damage,
-              //         accuracy: accuracy
-              //       });
-              //     }
-              //   }
-              // );
-           
+    .post("http://52.173.191.180:4000/Upload", {
+      imgname: image_name,
+      imagbytes: imgbytes
+    })
+    .then(result => {
+      if (result.status === 200) {
+        damaged_parts = result.data.damage_affected_parts;
+        severity_of_damage = result.data.assessment;
+        User.findOneAndUpdate(
+          { adjustoremail: req.adjustoremail, "images._id": req.params.id },
+      
+          {
+            $set: {
+              "images.$.claim_reference_no": req.body.claim_reference_no,
+              "images.$.vin_number": req.body.vin_number,
+              "images.$.make": req.body.make,
+              "images.$.year": req.body.year,
+              "images.$.image_name": req.body.image_name,
+              "images.$.image_type": req.body.image_type,
+              "images.$.date_uploaded": req.body.date_uploaded,
+              "images.$.damaged_parts": req.body.damaged_parts,
+              "images.$.severity_of_damage": req.body.severity_of_damage,
+              "images.$.accuracy": req.body.accuracy,
+              "images.$.imagePath": req.body.imagePath
+            }
+          },
+          function(err, model) {
+            if (err) {
+              console.log(err);
+              res.status(500).send("Error ");
+            } else {
+              console.log("saved");
+              console.log(model);
               res.status(200).json({
-                        damaged_parts: damaged_parts,
-                        severity_of_damage: severity_of_damage,
-                        accuracy: accuracy
-                      });
-        } else {
-          res
-            .status(500)
-            .json({ error: "Internal error finding  please try again" });
-        }
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+                damaged_parts: damaged_parts,
+                severity_of_damage: severity_of_damage,
+                accuracy: accuracy
+              });
+            }
+          }
+        );
+        
+      } else {
+        res
+          .status(500)
+          .json({ error: "Internal error finding  please try again" });
+      }
+    })
+    .catch(function(err) {
+      console.log(err);
+    });
 
-    // User.findOneAndUpdate(
-    //   { adjustoremail: req.adjustoremail },
-    //   { images: { $elemMatch: { _id: "5ca7bb485ed30c0a24c94df9" } } },
-    //   (err, user) => {
-    //     if (err) throw err;
-    //     else if (!user) {
-    //       res.status(500).send("No User Found Try Again");
-    //     } else {
-    //       res.status(200).send({ user: user });
-    //     }
-    //   }
-    // );
+
+
+    
+    
   }
 );
 
@@ -386,20 +368,39 @@ app.get("/api/profile", withAuth, function(req, res) {
 
 //Search
 
-app.get('/api/test',withAuth,(req,res,next)=>{
-    User.findOne(
-        { adjustoremail: req.adjustoremail },
-        { images: { $elemMatch: { _id: "5ca647004dace14464232f6a" } } },
-        function(err, model) {
-          if (err) {
-            console.log(err);
-            res.status(500).send("Error ");
-          } else {
-            res.status(200).json({model})
-          }
-        }
-      );
-})
+app.put("/api/test/:id", withAuth, (req, res, next) => {
+  User.findOneAndUpdate(
+    { adjustoremail: req.adjustoremail, "images._id": req.params.id },
+
+    {
+      $set: {
+        "images.$.claim_reference_no": req.body.claim_reference_no,
+        "images.$.vin_number": req.body.vin_number,
+        "images.$.make": req.body.make,
+        "images.$.year": req.body.year,
+        "images.$.image_name": req.body.image_name,
+        "images.$.image_type": req.body.image_type,
+        "images.$.date_uploaded": req.body.date_uploaded,
+        "images.$.damaged_parts": req.body.damaged_parts,
+        "images.$.severity_of_damage": req.body.severity_of_damage,
+        "images.$.accuracy": req.body.accuracy,
+        "images.$.imagePath": req.body.imagePath
+      }
+    },
+    function(err, model) {
+      if (err) {
+        console.log(err);
+        res.status(500).send("Error ");
+      } else {
+        console.log("saved");
+        console.log(model);
+        res.status(200).json({
+          data: model
+        });
+      }
+    }
+  );
+});
 
 app.get("/api/search/:query", withAuth, function(req, res) {
   const email = req.adjustoremail;
@@ -444,7 +445,7 @@ app.use((err, req, res, next) => {
 app.get("/checkToken", withAuth, function(req, res) {
   res.sendStatus(200);
 });
-app.get("/logout", function(req, res) {
+app.post("/logout", function(req, res) {
   let cookie = req.cookies;
   res.clearCookie("cookie.token");
 

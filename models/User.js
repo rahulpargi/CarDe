@@ -122,35 +122,35 @@ const UserSchema = new mongoose.Schema({
     images:[ImageSchema]
 });
 
-//Company Schema
-const CompanySchema=({
-    company_id:{
-        type:String,
-        required:true,
+// //Company Schema
+// const CompanySchema=({
+//     company_id:{
+//         type:String,
+//         required:true,
         
-    },
-    company_name:{
-        type:String,
-        required:true,
+//     },
+//     company_name:{
+//         type:String,
+//         required:true,
         
-    },
-    company_address:{
-        type:String,
-        required:true,
+//     },
+//     company_address:{
+//         type:String,
+//         required:true,
         
-    },
-    company_zipcode:{
-        type:String,
-        required:true,
+//     },
+//     company_zipcode:{
+//         type:String,
+//         required:true,
         
-    },
-    company_country:{
-        type:String,
-        required:true,
+//     },
+//     company_country:{
+//         type:String,
+//         required:true,
         
-    },
-    adjustors:[UserSchema]
-})
+//     },
+//     adjustors:[UserSchema]
+// })
 
 
 
